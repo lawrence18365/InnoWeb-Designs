@@ -1,0 +1,327 @@
+<html><head><base href="https://websimcreationengine.com/innovative-design/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InnoWeb Designs | Blog</title>
+    <style>
+        :root {
+            --primary-color: #4a90e2;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --text-color: #333;
+            --bg-color: #f9f9f9;
+            --light-gray: #f0f0f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        header {
+            background-color: var(--secondary-color);
+            color: #fff;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .logo:hover {
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 40px;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            font-size: 18px;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .blog-hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: #fff;
+            text-align: center;
+            padding: 150px 0 100px;
+            margin-top: 80px;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        }
+
+        .blog-hero h1 {
+            font-size: 56px;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .blog-hero p {
+            font-size: 22px;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            padding: 80px 0;
+        }
+
+        .blog-card {
+            background-color: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .blog-content {
+            padding: 25px;
+        }
+
+        .blog-category {
+            font-size: 14px;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .blog-title {
+            font-size: 22px;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .blog-excerpt {
+            font-size: 16px;
+            color: var(--text-color);
+            margin-bottom: 20px;
+        }
+
+        .read-more {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .read-more:hover {
+            background-color: var(--secondary-color);
+        }
+
+        footer {
+            background-color: var(--secondary-color);
+            color: #fff;
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        @media screen and (max-width: 1200px) {
+            .blog-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .blog-hero h1 {
+                font-size: 42px;
+            }
+
+            .blog-hero p {
+                font-size: 20px;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-icon {
+                display: block;
+                font-size: 24px;
+                color: #fff;
+                cursor: pointer;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">InnoWeb Designs</a>
+            <ul class="nav-links" style="margin-left: auto;">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="blog-hero">
+            <div class="container">
+                <h1>InnoWeb Insights</h1>
+                <p>Stay updated with the latest trends, tips, and innovations in web design and development</p>
+            </div>
+        </section>
+
+        <section id="blog" class="container">
+            <div class="blog-grid">
+                <article class="blog-card">
+                    <img src="https://page-images.websim.ai/Web%20Design%20Trends%202023_1024x1024xvkFkuQuS2qk4DvDSsx1c0cccd6a92b3.jpg" alt="Web Design Trends 2023" class="blog-image">
+                    <div class="blog-content">
+                        <span class="blog-category">Web Design</span>
+                        <h2 class="blog-title">Top Web Design Trends to Watch in 2023</h2>
+                        <p class="blog-excerpt">Discover the cutting-edge design trends that are shaping the digital landscape in 2023. From micro-interactions to dark mode, learn how to stay ahead of the curve.</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                </article>
+                <article class="blog-card">
+                    <img src="https://page-images.websim.ai/User%20Experience%20Design_1024x1024xvkFkuQuS2qk4DvDSsx0e0aaa4a20b3b.jpg" alt="User Experience Design" class="blog-image">
+                    <div class="blog-content">
+                        <span class="blog-category">UX Design</span>
+                        <h2 class="blog-title">The Art of Crafting Seamless User Experiences</h2>
+                        <p class="blog-excerpt">Explore the principles and best practices of user experience design. Learn how to create intuitive interfaces that delight users and drive engagement.</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                </article>
+                <article class="blog-card">
+                    <img src="https://page-images.websim.ai/Mobile-First%20Development_1024x1024xvkFkuQuS2qk4DvDSsx8c8d1062a3986.jpg" alt="Mobile-First Development" class="blog-image">
+                    <div class="blog-content">
+                        <span class="blog-category">Development</span>
+                        <h2 class="blog-title">Mastering Mobile-First Development</h2>
+                        <p class="blog-excerpt">Dive into the world of mobile-first development and learn why it's crucial in today's digital landscape. Discover techniques for optimizing performance on mobile devices.</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                </article>
+                <article class="blog-card">
+                    <img src="https://page-images.websim.ai/AI%20in%20Web%20Design_1024x1024xvkFkuQuS2qk4DvDSsx1ad025b4e5b35.jpg" alt="AI in Web Design" class="blog-image">
+                    <div class="blog-content">
+                        <span class="blog-category">Innovation</span>
+                        <h2 class="blog-title">The Role of AI in Modern Web Design</h2>
+                        <p class="blog-excerpt">Explore how artificial intelligence is revolutionizing web design. From automated layouts to personalized user experiences, discover the potential of AI-driven design.</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                </article>
+                <article class="blog-card">
+                    <img src="https://page-images.websim.ai/Accessibility%20in%20Web%20Design_1024x1024xvkFkuQuS2qk4DvDSsx648b3f8a3ed4e.jpg" alt="Accessibility in Web Design" class="blog-image">
+                    <div class="blog-content">
+                        <span class="blog-category">Accessibility</span>
+                        <h2 class="blog-title">Designing for Inclusivity: Web Accessibility Best Practices</h2>
+                        <p class="blog-excerpt">Learn why web accessibility is crucial and how to implement it effectively. Discover techniques for creating inclusive designs that cater to all users, regardless of their abilities.</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                </article>
+                <article class="blog-card">
+                    <img src="https://page-images.websim.ai/Progressive%20Web%20Apps_1024x1024xvkFkuQuS2qk4DvDSsx3ba9f0a84288c.jpg" alt="Progressive Web Apps" class="blog-image">
+                    <div class="blog-content">
+                        <span class="blog-category">Technology</span>
+                        <h2 class="blog-title">The Rise of Progressive Web Apps (PWAs)</h2>
+                        <p class="blog-excerpt">Explore the benefits of Progressive Web Apps and how they're changing the way we think about web development. Learn how to create fast, reliable, and engaging user experiences.</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2023 InnoWeb Designs. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate blog cards on scroll
+            gsap.from('.blog-card', {
+                duration: 0.8,
+                opacity: 0,
+                y: 50,
+                stagger: 0.2,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: '.blog-grid',
+                    start: 'top 80%',
+                }
+            });
+
+            // Mobile menu toggle
+            const mobileMenuIcon = document.querySelector('.mobile-menu-icon');
+            const navLinks = document.querySelector('.nav-links');
+
+            if (mobileMenuIcon) {
+                mobileMenuIcon.addEventListener('click', () => {
+                    navLinks.classList.toggle('show');
+                });
+            }
+        });
+    </script>
+</body></html>
