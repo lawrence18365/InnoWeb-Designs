@@ -1,0 +1,364 @@
+<!DOCTYPE html><html><head><base href="https://websimcreationengine.com/innovative-design/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InnoWeb Designs | Our Portfolio</title>
+    <style>
+        :root {
+            --primary-color: #4a90e2;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --text-color: #333;
+            --bg-color: #f9f9f9;
+            --light-gray: #f0f0f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        header {
+            background-color: var(--secondary-color);
+            color: #fff;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .logo:hover {
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 40px;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            font-size: 18px;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .portfolio-hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: #fff;
+            text-align: center;
+            padding: 150px 0 100px;
+            margin-top: 80px;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        }
+
+        .portfolio-hero h1 {
+            font-size: 56px;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .portfolio-hero p {
+            font-size: 22px;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            padding: 80px 0;
+        }
+
+        .portfolio-item {
+            background-color: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .portfolio-image {
+            width: 100%;
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .portfolio-content {
+            padding: 30px;
+        }
+
+        .portfolio-title {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+
+        .portfolio-description {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .portfolio-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            background-color: var(--light-gray);
+            color: var(--secondary-color);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        .view-project {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .view-project:hover {
+            background-color: #c0392b;
+        }
+
+        footer {
+            background-color: var(--secondary-color);
+            color: #fff;
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        @media screen and (max-width: 1200px) {
+            .portfolio-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .portfolio-hero h1 {
+                font-size: 42px;
+            }
+
+            .portfolio-hero p {
+                font-size: 20px;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-icon {
+                display: block;
+                font-size: 24px;
+                color: #fff;
+                cursor: pointer;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="container">
+    <a href="#" class="logo">InnoWeb Designs</a>
+    <ul class="nav-links" style="margin-left: auto;">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="mobile-menu-icon">
+    <!-- The icon has been removed as requested -->
+</div>
+</nav>
+    </header>
+
+    <main>
+        <section class="portfolio-hero">
+            <div class="container">
+                <h1>Our Portfolio</h1>
+                <p>Discover the innovative web solutions we've crafted for our clients across various industries</p>
+            </div>
+        </section>
+
+        <section id="portfolio" class="container">
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <div class="portfolio-image" style="background-image: url('https://websimcreationengine.com/innovative-design/images/portfolio-1.jpg');"></div>
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">TechNova Solutions</h3>
+                        <p class="portfolio-description">A sleek, modern website for a cutting-edge tech startup, featuring interactive product showcases and a user-friendly interface.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Web Design</span>
+                            <span class="tag">UI/UX</span>
+                            <span class="tag">React.js</span>
+                        </div>
+                        <a href="#" class="view-project">View Project</a>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image" style="background-image: url('https://websimcreationengine.com/innovative-design/images/portfolio-2.jpg');"></div>
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">GreenEats Delivery</h3>
+                        <p class="portfolio-description">An eco-friendly food delivery app with real-time tracking, seamless ordering, and integration with local sustainable restaurants.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Mobile App</span>
+                            <span class="tag">iOS</span>
+                            <span class="tag">Android</span>
+                        </div>
+                        <a href="#" class="view-project">View Project</a>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image" style="background-image: url('https://websimcreationengine.com/innovative-design/images/portfolio-3.jpg');"></div>
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">Artisanal Crafts Co.</h3>
+                        <p class="portfolio-description">A visually stunning e-commerce platform for handcrafted goods, featuring high-quality product imagery and secure checkout process.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">E-commerce</span>
+                            <span class="tag">Shopify</span>
+                            <span class="tag">Custom Theme</span>
+                        </div>
+                        <a href="#" class="view-project">View Project</a>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image" style="background-image: url('https://websimcreationengine.com/innovative-design/images/portfolio-4.jpg');"></div>
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">FitLife Tracker</h3>
+                        <p class="portfolio-description">A comprehensive fitness tracking web app with personalized workout plans, nutrition advice, and progress visualization tools.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Web App</span>
+                            <span class="tag">Vue.js</span>
+                            <span class="tag">Firebase</span>
+                        </div>
+                        <a href="#" class="view-project">View Project</a>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image" style="background-image: url('https://websimcreationengine.com/innovative-design/images/portfolio-5.jpg');"></div>
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">EduConnect Platform</h3>
+                        <p class="portfolio-description">An innovative e-learning platform connecting students and teachers worldwide, featuring live classes, interactive quizzes, and progress tracking.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">EdTech</span>
+                            <span class="tag">React</span>
+                            <span class="tag">Node.js</span>
+                        </div>
+                        <a href="#" class="view-project">View Project</a>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image" style="background-image: url('https://websimcreationengine.com/innovative-design/images/portfolio-6.jpg');"></div>
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">Urban Pulse Magazine</h3>
+                        <p class="portfolio-description">A dynamic online magazine showcasing urban culture, featuring a content management system and responsive design for all devices.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">WordPress</span>
+                            <span class="tag">Custom CMS</span>
+                            <span class="tag">Responsive Design</span>
+                        </div>
+                        <a href="#" class="view-project">View Project</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2023 InnoWeb Designs. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const portfolioItems = document.querySelectorAll('.portfolio-item');
+            
+            function checkScroll() {
+                portfolioItems.forEach(item => {
+                    const itemTop = item.getBoundingClientRect().top;
+                    const itemBottom = item.getBoundingClientRect().bottom;
+                    const windowHeight = window.innerHeight;
+
+                    if (itemTop < windowHeight && itemBottom > 0) {
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', checkScroll);
+            checkScroll(); // Initial check on page load
+
+            // Mobile menu toggle
+            const mobileMenuIcon = document.querySelector('.mobile-menu-icon');
+            const navLinks = document.querySelector('.nav-links');
+
+            mobileMenuIcon.addEventListener('click', () => {
+                navLinks.classList.toggle('show');
+            });
+        });
+    </script>
+</body></html>
