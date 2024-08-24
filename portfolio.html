@@ -104,12 +104,19 @@
         }
 
         .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            padding: 80px 0;
-        }
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 80px 0;
+    max-width: 1000px;
+    margin: 0 auto;
+}
 
+@media (min-width: 768px) {
+    .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
         .portfolio-item {
             background-color: #fff;
             border-radius: 15px;
@@ -242,90 +249,35 @@
             </div>
         </section>
 
-        <section id="portfolio" class="container">
-            <div class="portfolio-grid">
-                <div class="portfolio-item">
-                    <div class="portfolio-image" style="background-image: url('https://websimcreationengine.com/innovative-design/images/portfolio-1.jpg');"></div>
-                    <div class="portfolio-content">
-                        <h3 class="portfolio-title">TechNova Solutions</h3>
-                        <p class="portfolio-description">A sleek, modern website for a cutting-edge tech startup, featuring interactive product showcases and a user-friendly interface.</p>
-                        <div class="portfolio-tags">
-                            <span class="tag">Web Design</span>
-                            <span class="tag">UI/UX</span>
-                            <span class="tag">React.js</span>
-                        </div>
-                        <a href="#" class="view-project">View Project</a>
-                    </div>
+   <section id="portfolio" class="container">
+    <div class="portfolio-grid">
+        <div class="portfolio-item">
+            <div class="portfolio-image" style="background-image: url('https://gmzpaintingservice.com');"></div>
+            <div class="portfolio-content">
+                <h3 class="portfolio-title">GMZ Painting</h3>
+                <p class="portfolio-description">A professional website showcasing GMZ Painting's expertise in residential and commercial painting services, featuring a gallery of completed projects and easy quote request system.</p>
+                <div class="portfolio-tags">
+                    <span class="tag">Web Design</span>
+                    <span class="tag">Responsive</span>
+                    <span class="tag">SEO Optimized</span>
                 </div>
-                <div class="portfolio-item">
-                    <div class="portfolio-image" style="background-image: url('https://websimcreationengine.com/innovative-design/images/portfolio-2.jpg');"></div>
-                    <div class="portfolio-content">
-                        <h3 class="portfolio-title">GreenEats Delivery</h3>
-                        <p class="portfolio-description">An eco-friendly food delivery app with real-time tracking, seamless ordering, and integration with local sustainable restaurants.</p>
-                        <div class="portfolio-tags">
-                            <span class="tag">Mobile App</span>
-                            <span class="tag">iOS</span>
-                            <span class="tag">Android</span>
-                        </div>
-                        <a href="#" class="view-project">View Project</a>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <div class="portfolio-image" style="background-image: url('https://websimcreationengine.com/innovative-design/images/portfolio-3.jpg');"></div>
-                    <div class="portfolio-content">
-                        <h3 class="portfolio-title">Artisanal Crafts Co.</h3>
-                        <p class="portfolio-description">A visually stunning e-commerce platform for handcrafted goods, featuring high-quality product imagery and secure checkout process.</p>
-                        <div class="portfolio-tags">
-                            <span class="tag">E-commerce</span>
-                            <span class="tag">Shopify</span>
-                            <span class="tag">Custom Theme</span>
-                        </div>
-                        <a href="#" class="view-project">View Project</a>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <div class="portfolio-image" style="background-image: url('https://websimcreationengine.com/innovative-design/images/portfolio-4.jpg');"></div>
-                    <div class="portfolio-content">
-                        <h3 class="portfolio-title">FitLife Tracker</h3>
-                        <p class="portfolio-description">A comprehensive fitness tracking web app with personalized workout plans, nutrition advice, and progress visualization tools.</p>
-                        <div class="portfolio-tags">
-                            <span class="tag">Web App</span>
-                            <span class="tag">Vue.js</span>
-                            <span class="tag">Firebase</span>
-                        </div>
-                        <a href="#" class="view-project">View Project</a>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <div class="portfolio-image" style="background-image: url('https://websimcreationengine.com/innovative-design/images/portfolio-5.jpg');"></div>
-                    <div class="portfolio-content">
-                        <h3 class="portfolio-title">EduConnect Platform</h3>
-                        <p class="portfolio-description">An innovative e-learning platform connecting students and teachers worldwide, featuring live classes, interactive quizzes, and progress tracking.</p>
-                        <div class="portfolio-tags">
-                            <span class="tag">EdTech</span>
-                            <span class="tag">React</span>
-                            <span class="tag">Node.js</span>
-                        </div>
-                        <a href="#" class="view-project">View Project</a>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <div class="portfolio-image" style="background-image: url('https://websimcreationengine.com/innovative-design/images/portfolio-6.jpg');"></div>
-                    <div class="portfolio-content">
-                        <h3 class="portfolio-title">Urban Pulse Magazine</h3>
-                        <p class="portfolio-description">A dynamic online magazine showcasing urban culture, featuring a content management system and responsive design for all devices.</p>
-                        <div class="portfolio-tags">
-                            <span class="tag">WordPress</span>
-                            <span class="tag">Custom CMS</span>
-                            <span class="tag">Responsive Design</span>
-                        </div>
-                        <a href="#" class="view-project">View Project</a>
-                    </div>
-                </div>
+                <a href="#" class="view-project">View Project</a>
             </div>
-        </section>
-    </main>
-
+        </div>
+        <div class="portfolio-item">
+            <div class="portfolio-image" style="background-image: url('https://websimcreationengine.com/innovative-design/images/golden-slipper-cleaning.jpg');"></div>
+            <div class="portfolio-content">
+                <h3 class="portfolio-title">Golden Slipper Cleaning Services</h3>
+                <p class="portfolio-description">A user-friendly website for Golden Slipper Cleaning Services, highlighting their range of cleaning solutions, online booking functionality, and customer testimonials.</p>
+                <div class="portfolio-tags">
+                    <span class="tag">Web Development</span>
+                    <span class="tag">Booking System</span>
+                </div>
+                <a href="#" class="view-project">View Project</a>
+            </div>
+        </div>
+    </div>
+   </section>
     <footer>
         <div class="container">
             <p>© 2023 InnoWeb Designs. All rights reserved.</p>
