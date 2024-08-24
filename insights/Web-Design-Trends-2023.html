@@ -1,4 +1,7 @@
-<html><head><base href="https://lawrence18365.github.io/InnoWeb-Designs">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base href="https://lawrence18365.github.io/InnoWeb-Designs">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>InnoWeb Designs | Web Design Trends 2023</title>
@@ -226,6 +229,40 @@
                 font-size: 30px;
             }
         }
+    .image-container {
+            position: relative;
+            width: 100%;
+            height: 500px; /* Match the max-height of .blog-image */
+            background-color: #f0f0f0; /* Light grey background as placeholder */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 40px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .image-container::after {
+            content: "Loading image...";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 18px;
+            color: #666;
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .blog-image.loaded {
+            opacity: 1;
+        }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
@@ -257,7 +294,9 @@
         </section>
 
         <section class="blog-content container">
-            <img src="https://page-images.websim.ai/Web%20Design%20Trends%202023%20-%20Colorful%20abstract%20shapes%20representing%20modern%20design%20elements_1024x1024xwhCDTaLaYmprpPau7x1d10afe3faa05.jpg" alt="Web Design Trends 2023 - Colorful abstract shapes representing modern design elements" class="blog-image">
+            <div class="image-container">
+                <img src="https://page-images.websim.ai/Web%20Design%20Trends%202023%20-%20Colorful%20abstract%20shapes%20representing%20modern%20design%20elements_1024x1024xwhCDTaLaYmprpPau7x1d10afe3faa05.jpg" alt="Web Design Trends 2023 - Colorful abstract shapes representing modern design elements" class="blog-image" id="mainBlogImage">
+            </div>
             <div class="blog-text">
                 <p>As we dive into 2023, the world of web design continues to evolve at a rapid pace. Staying ahead of the curve is crucial for designers and businesses alike. In this article, we'll explore the top web design trends that are shaping the digital landscape in 2023. From micro-interactions to dark mode, these trends are not just about aesthetics – they're about creating more engaging, accessible, and user-friendly experiences.</p>
 
@@ -310,7 +349,7 @@
             </div>
         </section>
 
-        <section class="cta-section">
+         <section class="cta-section">
             <div class="container">
                 <h2 class="cta-heading">Ready to update your website with the latest trends?</h2>
                 <a href="#contact" class="cta-button">Contact Us Today</a>
@@ -327,12 +366,36 @@
     <script>
         gsap.registerPlugin(ScrollTrigger);
 
-        gsap.from('.blog-image', {
+        // Image loading
+        function loadImage(imgElement) {
+            return new Promise((resolve, reject) => {
+                if (!imgElement.complete) {
+                    imgElement.onload = () => {
+                        imgElement.classList.add('loaded');
+                        resolve(imgElement);
+                    };
+                    imgElement.onerror = reject;
+                } else {
+                    imgElement.classList.add('loaded');
+                    resolve(imgElement);
+                }
+            });
+        }
+
+        const mainImage = document.getElementById('mainBlogImage');
+        loadImage(mainImage).then(() => {
+            console.log('Image loaded successfully');
+        }).catch(() => {
+            console.error('Failed to load image');
+            mainImage.src = '/path/to/fallback-image.jpg'; // Replace with an actual fallback image path
+        });
+
+        gsap.from('.image-container', {
             opacity: 0,
             y: 50,
             duration: 1,
             scrollTrigger: {
-                trigger: '.blog-image',
+                trigger: '.image-container',
                 start: 'top 80%',
             }
         });
@@ -368,4 +431,5 @@
             });
         });
     </script>
-</body></html>
+</body>
+</html>
