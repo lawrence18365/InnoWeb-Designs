@@ -1,75 +1,25 @@
-<!DOCTYPE html><html><head><base href="https://lawrence18365.github.io/InnoWeb-Designs">
-<link href="https://db.onlinewebfonts.com/c/35e76f5f0525b62c69ebade19a3ee8f4?family=Futura+Condensed+Extra+Bold" rel="stylesheet">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base href="https://lawrence18365.github.io/InnoWeb-Designs">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>InnoWeb Designs | Innovative Web Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
     <style>
+        @font-face {
+            font-family: "Futura Condensed Extra Bold";
+            src: url("https://db.onlinewebfonts.com/t/35e76f5f0525b62c69ebade19a3ee8f4.eot");
+            src: url("https://db.onlinewebfonts.com/t/35e76f5f0525b62c69ebade19a3ee8f4.eot?#iefix")format("embedded-opentype"),
+                 url("https://db.onlinewebfonts.com/t/35e76f5f0525b62c69ebade19a3ee8f4.woff2")format("woff2"),
+                 url("https://db.onlinewebfonts.com/t/35e76f5f0525b62c69ebade19a3ee8f4.woff")format("woff"),
+                 url("https://db.onlinewebfonts.com/t/35e76f5f0525b62c69ebade19a3ee8f4.ttf")format("truetype"),
+                 url("https://db.onlinewebfonts.com/t/35e76f5f0525b62c69ebade19a3ee8f4.svg#Futura Condensed Extra Bold")format("svg");
+        }
 
-@font-face {
-    font-family: "Futura Condensed Extra Bold";
-    src: url("https://db.onlinewebfonts.com/t/35e76f5f0525b62c69ebade19a3ee8f4.eot");
-    src: url("https://db.onlinewebfonts.com/t/35e76f5f0525b62c69ebade19a3ee8f4.eot?#iefix")format("embedded-opentype"),
-    url("https://db.onlinewebfonts.com/t/35e76f5f0525b62c69ebade19a3ee8f4.woff2")format("woff2"),
-    url("https://db.onlinewebfonts.com/t/35e76f5f0525b62c69ebade19a3ee8f4.woff")format("woff"),
-    url("https://db.onlinewebfonts.com/t/35e76f5f0525b62c69ebade19a3ee8f4.ttf")format("truetype"),
-    url("https://db.onlinewebfonts.com/t/35e76f5f0525b62c69ebade19a3ee8f4.svg#Futura Condensed Extra Bold")format("svg");
-}
-
-:root {
-    --primary-color: #4a90e2;
-    --secondary-color: #2c3e50;
-    --accent-color: #e74c3c;
-    --text-color: #333;
-    --bg-color: #f9f9f9;
-    --light-gray: #f0f0f0;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Poppins', sans-serif;
-    line-height: 1.6;
-    color: var(--text-color);
-    background-color: var(--bg-color);
-}
-
-.logo {
-    font-family: "Futura Condensed Extra Bold", sans-serif;
-    font-size: 28px;
-    font-weight: bold;
-    color: var(--primary-color);
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    transition: color 0.3s ease;
-}
-
-.hero-content h1 {
-    font-family: "Futura Condensed Extra Bold", sans-serif;
-    font-size: 108px;
-    margin-bottom: 20px;
-    animation: fadeInUp 1s ease;
-}
-
-.section-title {
-    font-family: "Futura Condensed Extra Bold", sans-serif;
-    font-size: 36px;
-    text-align: center;
-    margin-bottom: 50px;
-    position: relative;
-    color: var(--secondary-color);
-}
-
-.service-title {
-    font-family: "Futura Condensed Extra Bold", sans-serif;
-    font-size: 24px;
-    margin-bottom: 15px;
-    color: var(--secondary-color);
-}
         :root {
             --primary-color: #4a90e2;
             --secondary-color: #2c3e50;
@@ -120,6 +70,7 @@ body {
         }
 
         .logo {
+            font-family: "Futura Condensed Extra Bold", sans-serif;
             font-size: 28px;
             font-weight: bold;
             color: var(--primary-color);
@@ -175,50 +126,47 @@ body {
         }
 
         .hero {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    background: 
-        linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.1) 90%, rgba(255,255,255,0.2) 100%),
-        linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    color: #fff;
-    position: relative;
-    overflow: hidden;
-}
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: 
+                linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.1) 90%, rgba(255,255,255,0.2) 100%),
+                linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
 
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('https://websimcreationengine.com/innovative-design/hero-bg-pattern.svg') repeat;
-    opacity: 0.1;
-    animation: moveBackground 20s linear infinite;
-    z-index: 1;
-}
-
-.hero-content {
-    max-width: 800px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 2;
-}
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://websimcreationengine.com/innovative-design/hero-bg-pattern.svg') repeat;
+            opacity: 0.1;
+            animation: moveBackground 20s linear infinite;
+            z-index: 1;
+        }
 
         @keyframes moveBackground {
-            0% {
-                background-position: 0 0;
-            }
-            100% {
-                background-position: 100% 100%;
-            }
+            0% { background-position: 0 0; }
+            100% { background-position: 100% 100%; }
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
         }
 
         .hero-content h1 {
-            font-size: 48px;
+            font-family: "Futura Condensed Extra Bold", sans-serif;
+            font-size: 72px;
             margin-bottom: 20px;
             animation: fadeInUp 1s ease;
         }
@@ -252,6 +200,7 @@ body {
         }
 
         .section-title {
+            font-family: "Futura Condensed Extra Bold", sans-serif;
             font-size: 36px;
             text-align: center;
             margin-bottom: 50px;
@@ -295,6 +244,7 @@ body {
         }
 
         .service-title {
+            font-family: "Futura Condensed Extra Bold", sans-serif;
             font-size: 24px;
             margin-bottom: 15px;
             color: var(--secondary-color);
@@ -519,7 +469,6 @@ body {
         .footer-section ul {
             list-style: none;
         }
-
         .footer-section ul li {
             margin-bottom: 10px;
         }
@@ -594,10 +543,6 @@ body {
             }
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
 </head>
 <body>
     <header>
@@ -607,11 +552,11 @@ body {
                 InnoWeb Designs
             </a>
             <ul class="nav-links">
-                <li><a href="InnoWeb-Designs/services.html">Services</a></li>
-                <li><a href="InnoWeb-Designs/portfolio.html">Portfolio</a></li>
-                <li><a href="InnoWeb-Designs/testimonials.html">Testimonials</a></li>
-                <li><a href="InnoWeb-Designs/insights.html">Blog</a></li>
-                <li><a href="InnoWeb-Designs/contact.html">Contact</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -622,7 +567,7 @@ body {
                 <div class="hero-content">
                     <h1>Innovative Web Solutions for Your Business</h1>
                     <p>We create stunning, user-friendly websites that drive results</p>
-                    <a href="consultation.html" class="cta-button">Get a Free Consultation</a>
+                    <a href="#contact" class="cta-button">Get a Free Consultation</a>
                 </div>
             </div>
         </section>
@@ -723,7 +668,7 @@ body {
                         </div>
                     </div>
                     <div class="blog-card">
-                      <img src="https://page-images.websim.ai/SEO%20optimization%20tips_300x200x5xxC176IvMSYtWXMYxeab7e86d75f32.jpg" alt="SEO optimization tips" width="300" height="200">
+                        <img src="https://page-images.websim.ai/SEO%20optimization%20tips_300x200x5xxC176IvMSYtWXMYxeab7e86d75f32.jpg" alt="SEO optimization tips" width="300" height="200">
                         <div class="blog-content">
                             <h3 class="blog-title">5 SEO Tips to Boost Your Website's Ranking</h3>
                             <p class="blog-excerpt">Learn how to improve your website's search engine visibility with these expert tips.</p>
@@ -760,24 +705,24 @@ body {
                     </div>
                     <form id="contact-form" class="contact-form">
                         <div class="form-group">
-                            <input type="text" name="name" placeholder="Your Name" required="">
+                            <input type="text" name="name" placeholder="Your Name" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" name="email" placeholder="Your Email" required="">
+                            <input type="email" name="email" placeholder="Your Email" required>
                         </div>
                         <div class="form-group">
                             <input type="tel" name="phone" placeholder="Your Phone (optional)">
                         </div>
                         <div class="form-group">
-                            <select name="subject" required="">
-                                <option value="" disabled="" selected="">Select Subject</option>
+                            <select name="subject" required>
+                                <option value="" disabled selected>Select Subject</option>
                                 <option value="general">General Inquiry</option>
                                 <option value="quote">Request a Quote</option>
                                 <option value="support">Technical Support</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <textarea name="message" placeholder="Your Message" required=""></textarea>
+                            <textarea name="message" placeholder="Your Message" required></textarea>
                         </div>
                         <button type="submit" class="cta-button">Send Message</button>
                     </form>
@@ -790,9 +735,9 @@ body {
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-    <h3>About Us</h3>
-    <p style="text-align: left; max-width: 250px; margin-top: 10px;">InnoWeb Designs is a leading web design agency specializing in creating innovative and user-friendly websites for businesses of all sizes. With our passion for cutting-edge technology and creative design, we help our clients establish a strong online presence and achieve their digital goals. Our team of expert designers and developers work tirelessly to deliver custom solutions that drive results and exceed expectations.</p>
-</div>
+                    <h3>About Us</h3>
+                    <p>InnoWeb Designs is a leading web design agency specializing in creating innovative and user-friendly websites for businesses of all sizes. With our passion for cutting-edge technology and creative design, we help our clients establish a strong online presence and achieve their digital goals.</p>
+                </div>
                 <div class="footer-section">
                     <h3>Quick Links</h3>
                     <ul>
