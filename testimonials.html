@@ -1,0 +1,398 @@
+
+<html><head><base href="https://websimcreationengine.com/innovative-design/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InnoWeb Designs | Client Testimonials</title>
+    <style>
+        :root {
+            --primary-color: #4a90e2;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --text-color: #333;
+            --bg-color: #f9f9f9;
+            --light-gray: #f0f0f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        header {
+            background-color: var(--secondary-color);
+            color: #fff;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .logo:hover {
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 40px;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            font-size: 18px;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .testimonials-hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: #fff;
+            text-align: center;
+            padding: 150px 0 100px;
+            margin-top: 80px;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        }
+
+        .testimonials-hero h1 {
+            font-size: 56px;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .testimonials-hero p {
+            font-size: 22px;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            padding: 80px 0;
+        }
+
+        .testimonial-card {
+            background-color: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .testimonial-content {
+            padding: 30px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .testimonial-text {
+            font-size: 18px;
+            color: var(--text-color);
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .client-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .client-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 15px;
+            object-fit: cover;
+        }
+
+        .client-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .client-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+
+        .client-position {
+            font-size: 14px;
+            color: var(--accent-color);
+        }
+
+        .rating {
+            color: #ffc107;
+            font-size: 20px;
+            margin-top: 10px;
+        }
+
+        footer {
+            background-color: var(--secondary-color);
+            color: #fff;
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        @media screen and (max-width: 1200px) {
+            .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .testimonials-hero h1 {
+                font-size: 42px;
+            }
+
+            .testimonials-hero p {
+                font-size: 20px;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-icon {
+                display: block;
+                font-size: 24px;
+                color: #fff;
+                cursor: pointer;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">InnoWeb Designs</a>
+            <ul class="nav-links" style="margin-left: auto;">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="testimonials-hero">
+            <div class="container">
+                <h1>Client Testimonials</h1>
+                <p>Hear what our satisfied clients have to say about their experience with InnoWeb Designs</p>
+            </div>
+        </section>
+
+        <section id="testimonials" class="container">
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">"InnoWeb Designs transformed our online presence with a stunning website that perfectly captures our brand essence. Their attention to detail and innovative approach exceeded our expectations!"</p>
+                        <div class="client-info">
+                            <img src="https://websimcreationengine.com/innovative-design/images/client1.jpg" alt="Sarah Johnson" class="client-image">
+                            <div class="client-details">
+                                <span class="client-name">Sarah Johnson</span>
+                                <span class="client-position">CEO, TechNova Solutions</span>
+                            </div>
+                        </div>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">"The team at InnoWeb Designs created a user-friendly and visually appealing e-commerce platform for our artisanal crafts. Our sales have skyrocketed since the launch!"</p>
+                        <div class="client-info">
+                            <img src="https://websimcreationengine.com/innovative-design/images/client2.jpg" alt="Michael Chen" class="client-image">
+                            <div class="client-details">
+                                <span class="client-name">Michael Chen</span>
+                                <span class="client-position">Founder, Artisanal Crafts Co.</span>
+                            </div>
+                        </div>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">"Working with InnoWeb Designs was a game-changer for our startup. They developed a cutting-edge web application that streamlined our operations and delighted our users."</p>
+                        <div class="client-info">
+                            <img src="https://websimcreationengine.com/innovative-design/images/client3.jpg" alt="Emily Rodriguez" class="client-image">
+                            <div class="client-details">
+                                <span class="client-name">Emily Rodriguez</span>
+                                <span class="client-position">CTO, FitLife Tracker</span>
+                            </div>
+                        </div>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">"The mobile app developed by InnoWeb Designs for our food delivery service is intuitive, fast, and beautifully designed. It has significantly improved our customer satisfaction rates."</p>
+                        <div class="client-info">
+                            <img src="https://websimcreationengine.com/innovative-design/images/client4.jpg" alt="David Thompson" class="client-image">
+                            <div class="client-details">
+                                <span class="client-name">David Thompson</span>
+                                <span class="client-position">Co-founder, GreenEats Delivery</span>
+                            </div>
+                        </div>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">"InnoWeb Designs created a dynamic and engaging online platform for our magazine. Their expertise in responsive design ensures our content looks great on all devices."</p>
+                        <div class="client-info">
+                            <img src="https://websimcreationengine.com/innovative-design/images/client5.jpg" alt="Olivia Parker" class="client-image">
+                            <div class="client-details">
+                                <span class="client-name">Olivia Parker</span>
+                                <span class="client-position">Editor-in-Chief, Urban Pulse Magazine</span>
+                            </div>
+                        </div>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">"The team at InnoWeb Designs brought our vision for an interactive educational platform to life. Their innovative approach to e-learning has revolutionized how we connect with students globally."</p>
+                        <div class="client-info">
+                            <img src="https://websimcreationengine.com/innovative-design/images/client6.jpg" alt="Dr. James Wilson" class="client-image">
+                            <div class="client-details">
+                                <span class="client-name">Dr. James Wilson</span>
+                                <span class="client-position">Director, EduConnect Platform</span>
+                            </div>
+                        </div>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2023 InnoWeb Designs. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const testimonialCards = document.querySelectorAll('.testimonial-card');
+            
+            function checkScroll() {
+                testimonialCards.forEach(card => {
+                    const cardTop = card.getBoundingClientRect().top;
+                    const cardBottom = card.getBoundingClientRect().bottom;
+                    const windowHeight = window.innerHeight;
+
+                    if (cardTop < windowHeight && cardBottom > 0) {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', checkScroll);
+            checkScroll(); // Initial check on page load
+
+            // Mobile menu toggle
+            const mobileMenuIcon = document.querySelector('.mobile-menu-icon');
+            const navLinks = document.querySelector('.nav-links');
+
+            if (mobileMenuIcon) {
+                mobileMenuIcon.addEventListener('click', () => {
+                    navLinks.classList.toggle('show');
+                });
+            }
+        });
+    </script>
+</body></html>
