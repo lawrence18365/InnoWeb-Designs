@@ -18,13 +18,15 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--bg-color);
-        }
-
+        @font-face {
+      font-family: 'Ginto Bold';
+      src: url('/fonts/6286374983556efc2e78b45c_Ginto Bold.ttf') format('truetype');
+      font-weight: bold;
+      font-style: normal;
+    }
+    body {
+      font-family: 'Ginto Bold', sans-serif;
+    }
         .container {
             max-width: 1400px;
             margin: 0 auto;
@@ -49,6 +51,7 @@
         }
 
         .logo {
+            font-family: 'Ginto Bold', sans-serif;
             font-size: 28px;
             font-weight: bold;
             color: #fff;
