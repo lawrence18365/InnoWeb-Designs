@@ -964,7 +964,7 @@ async function sendMessage() {
     if (message) {
         addMessage(message, true);
         userInput.value = '';
-        
+
         try {
             const response = await fetch('https://hook.eu2.make.com/efn6cc5v2cg9ee9p8odj1l39v7vs0pk7', {
                 method: 'POST',
@@ -973,25 +973,17 @@ async function sendMessage() {
                 },
                 body: JSON.stringify({ message }),
             });
-            
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            
+
             const data = await response.json();
             
-            // Check if the response contains the expected 'reply' field
-            if (data && data.reply) {
-                addMessage(data.reply, false);
-            } else {
-                console.error('Unexpected response format:', data);
-                addMessage('Sorry, I received an unexpected response format.', false);
-            }
+            // This line displays the bot's response in the chat widget
+            addMessage(data.reply, false);
         } catch (error) {
             console.error('Error:', error);
             addMessage('Sorry, I couldn\'t process your request.', false);
         }
     }
+}
 }
     </script>
 </body></html>
