@@ -1011,25 +1011,36 @@ async function sendMessage() {
                 },
                 body: JSON.stringify({ message }),
             });
-            const data = await response.json();
+
+            console.log('Raw response:', response);
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const text = await response.text();
+            console.log('Response text:', text);
+
+            let data;
+            try {
+                data = JSON.parse(text);
+            } catch (e) {
+                console.log('Response is not JSON, using as plain text');
+                data = { reply: text };
+            }
 
             hideTypingIndicator();
 
-            // Check if the response contains the expected 'reply' field
-            if (data && data.reply) {
-                addMessage(data.reply, false);
-            } else if (data && data.Result) {
-                // If the response is in the 'Result' field (as shown in the Make.com screenshot)
-                addMessage(data.Result, false);
+            if (data && (data.reply || data.Result)) {
+                addMessage(data.reply || data.Result, false);
             } else {
-                // If the response structure is different, log it and show a generic message
                 console.log('Unexpected response structure:', data);
                 addMessage('Received a response, but it was in an unexpected format.', false);
             }
         } catch (error) {
             console.error('Error:', error);
             hideTypingIndicator();
-            addMessage('Sorry, I couldn\'t process your request.', false);
+            addMessage('Sorry, I couldn\'t process your request. Please try again.', false);
         }
     }
 }
@@ -1039,6 +1050,6 @@ userInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
         sendMessage();
     }
-});
+});    
     </script>
 </body></html>
