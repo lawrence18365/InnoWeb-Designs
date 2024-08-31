@@ -1012,9 +1012,20 @@ async function sendMessage() {
                 body: JSON.stringify({ message }),
             });
             const data = await response.json();
-            
+
             hideTypingIndicator();
-            addMessage(data.reply, false);
+
+            // Check if the response contains the expected 'reply' field
+            if (data && data.reply) {
+                addMessage(data.reply, false);
+            } else if (data && data.Result) {
+                // If the response is in the 'Result' field (as shown in the Make.com screenshot)
+                addMessage(data.Result, false);
+            } else {
+                // If the response structure is different, log it and show a generic message
+                console.log('Unexpected response structure:', data);
+                addMessage('Received a response, but it was in an unexpected format.', false);
+            }
         } catch (error) {
             console.error('Error:', error);
             hideTypingIndicator();
