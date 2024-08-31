@@ -899,74 +899,19 @@
             <span class="toggle-text">Chat with AI</span>
             <span class="toggle-icon">▲</span>
         </div>
+  <div id="typing-indicator" class="message bot-message" style="display: none;">
+             <span class="typing-dot"></span>
+             <span class="typing-dot"></span>
+             <span class="typing-dot"></span>
+         </div>
         <div class="chat-content">
             <div class="chat-messages" id="chat-messages"></div>
             <div class="chat-input">
                 <input type="text" id="user-input" placeholder="Type your message...">
                 <button id="send-button">Send</button>
             </div>
-            <div id="typing-indicator" class="message bot-message" style="display: none;">
-             <span class="typing-dot"></span>
-             <span class="typing-dot"></span>
-             <span class="typing-dot"></span>
-         </div>
         </div>
     </div>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-<script>
-$(document).ready(function() {
-    // Smooth scrolling for navigation links
-    $('a[href^="#"]').on('click', function(event) {
-        var target = $(this.getAttribute('href'));
-        if (target.length) {
-            event.preventDefault();
-            $('html, body').stop().animate({
-                scrollTop: target.offset().top - 100
-            }, 1000);
-        }
-    });
-
-    // Initialize testimonials slider
-    $('.testimonials-slider').slick({
-        dots: true,
-        infinite: true,
-        speed: 500,
-        fade: true,
-        cssEase: 'linear',
-        autoplay: true,
-        autoplaySpeed: 5000
-    });
-
-    // Form submission
-    $('#contact-form').on('submit', function(e) {
-        e.preventDefault();
-        // Add your form submission logic here
-        alert('Thank you for your message. We will get back to you soon!');
-        this.reset();
-    });
-
-    // Add scroll animation for services
-    $(window).scroll(function() {
-        $('.service-card').each(function() {
-            var bottom_of_object = $(this).offset().top + $(this).outerHeight();
-            var bottom_of_window = $(window).scrollTop() + $(window).height();
-            if (bottom_of_window > bottom_of_object) {
-                $(this).addClass('animated fadeInUp');
-            }
-        });
-    });
-
-    // Header scroll effect
-    $(window).scroll(function() {
-        if ($(this).scrollTop() > 50) {
-            $('header').addClass('scrolled');
-        } else {
-            $('header').removeClass('scrolled');
-        }
-    });
-});
-
 // Chat widget functionality
 const chatWidget = document.getElementById('chat-widget');
 const chatToggle = document.getElementById('chat-toggle');
@@ -974,6 +919,8 @@ const chatMessages = document.getElementById('chat-messages');
 const userInput = document.getElementById('user-input');
 const sendButton = document.getElementById('send-button');
 const typingIndicator = document.getElementById('typing-indicator');
+
+let conversationHistory = [];
 
 chatToggle.addEventListener('click', () => {
     chatWidget.classList.toggle('open');
@@ -986,6 +933,12 @@ function addMessage(message, isUser) {
     messageElement.textContent = message;
     chatMessages.appendChild(messageElement);
     chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    // Add message to conversation history
+    conversationHistory.push({
+        role: isUser ? 'user' : 'assistant',
+        content: message
+    });
 }
 
 function showTypingIndicator() {
@@ -1009,7 +962,10 @@ async function sendMessage() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ message }),
+                body: JSON.stringify({ 
+                    message,
+                    conversationHistory 
+                }),
             });
 
             console.log('Raw response:', response);
@@ -1032,7 +988,8 @@ async function sendMessage() {
             hideTypingIndicator();
 
             if (data && (data.reply || data.Result)) {
-                addMessage(data.reply || data.Result, false);
+                const botReply = data.reply || data.Result;
+                addMessage(botReply, false);
             } else {
                 console.log('Unexpected response structure:', data);
                 addMessage('Received a response, but it was in an unexpected format.', false);
@@ -1050,6 +1007,6 @@ userInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
         sendMessage();
     }
-});    
+});
     </script>
 </body></html>
