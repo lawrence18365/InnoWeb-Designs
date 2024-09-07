@@ -8,6 +8,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://js.stripe.com/v3/"></script>
     <style>
         :root {
             --primary-color: #0a192f;
@@ -516,6 +518,73 @@
             visibility: visible;
         }
 
+        #hero-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--accent-color);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            z-index: 9999;
+        }
+
+        .cursor-dot {
+            width: 4px;
+            height: 4px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            transition: all 0.2s ease;
+            z-index: 9999;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .modal-content {
+            background-color: var(--secondary-color);
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid var(--accent-color);
+            width: 80%;
+            max-width: 500px;
+            border-radius: 10px;
+        }
+
+        .close {
+            color: var(--accent-color);
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: var(--heading-color);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 3rem;
@@ -537,9 +606,12 @@
     </style>
 </head>
 <body>
+    <div class="cursor"></div>
+    <div class="cursor-dot"></div>
+
     <header>
         <nav class="container">
-<a href="#" class="logo">InnoWeb Studio</a>
+            <a href="#" class="logo">InnoWeb Studio</a>
             <div class="nav-links">
                 <a href="#services">Services</a>
                 <a href="#process">Process</a>
@@ -553,6 +625,7 @@
 
     <main>
         <section class="hero">
+            <canvas id="hero-canvas"></canvas>
             <div class="container">
                 <div class="hero-content">
                     <h1 class="animate-on-scroll">Elevating Digital Experiences</h1>
@@ -560,7 +633,6 @@
                     <a href="#contact" class="cta-button animate-on-scroll">Start Your Journey</a>
                 </div>
             </div>
-            <div class="hero-background"></div>
         </section>
 
         <section id="services" class="section">
@@ -685,7 +757,7 @@
                             <li>Contact Form Integration</li>
                             <li>1 Month of Support</li>
                         </ul>
-                        <a href="#contact" class="cta-button">Get Started</a>
+                        <a href="#" class="cta-button" onclick="showPaymentModal('Startup', 5000)">Get Started</a>
                     </div>
                     <div class="pricing-item animate-on-scroll">
                         <h3 class="pricing-title">Growth</h3>
@@ -697,7 +769,7 @@
                             <li>E-commerce Integration</li>
                             <li>3 Months of Support</li>
                         </ul>
-                        <a href="#contact" class="cta-button">Get Started</a>
+                        <a href="#" class="cta-button" onclick="showPaymentModal('Growth', 10000)">Get Started</a>
                     </div>
                     <div class="pricing-item animate-on-scroll">
                         <h3 class="pricing-title">Enterprise</h3>
@@ -761,6 +833,22 @@
         <i class="fas fa-chevron-up"></i>
     </div>
 
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Complete Your Purchase</h2>
+            <p>You're purchasing the <span id="planName"></span> plan for $<span id="planPrice"></span>.</p>
+            <form id="payment-form">
+                <div id="card-element">
+                    <!-- A Stripe Element will be inserted here. -->
+                </div>
+                <!-- Used to display form errors. -->
+                <div id="card-errors" role="alert"></div>
+                <button class="cta-button" style="margin-top: 20px;">Submit Payment</button>
+            </form>
+        </div>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
     <script>
         // GSAP Animations
@@ -781,18 +869,6 @@
             });
         });
 
-        // Hero background animation
-        gsap.to('.hero-background', {
-            backgroundPosition: '100% 50%',
-            ease: 'none',
-            scrollTrigger: {
-                trigger: '.hero',
-                start: 'top top',
-                end: 'bottom top',
-                scrub: true
-            }
-        });
-
         // Testimonial slider
         let currentTestimonial = 0;
         const testimonials = document.querySelectorAll('.testimonial-item');
@@ -805,7 +881,8 @@
                     item.style.transform = 'translateX(0)';
                 } else {
                     item.style.opacity = 0;
-                    item.style.transform = 'translateX(100%)';
+                    item.style.transform = '
+translateX(100%)';
                 }
             });
         }
@@ -842,6 +919,94 @@
                 });
             });
         });
+
+        // Three.js Animation
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('hero-canvas'), alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+
+        const geometry = new THREE.TorusKnotGeometry(10, 3, 100, 16);
+        const material = new THREE.MeshBasicMaterial({ color: 0x64ffda, wireframe: true });
+        const torusKnot = new THREE.Mesh(geometry, material);
+        scene.add(torusKnot);
+
+        camera.position.z = 30;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            torusKnot.rotation.x += 0.01;
+            torusKnot.rotation.y += 0.01;
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Custom cursor
+        const cursor = document.querySelector('.cursor');
+        const cursorDot = document.querySelector('.cursor-dot');
+
+        document.addEventListener('mousemove', e => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            cursorDot.style.left = e.clientX + 'px';
+            cursorDot.style.top = e.clientY + 'px';
+        });
+
+        document.addEventListener('mousedown', () => {
+            cursor.style.transform = 'scale(0.8)';
+            cursorDot.style.transform = 'scale(0.8)';
+        });
+
+        document.addEventListener('mouseup', () => {
+            cursor.style.transform = 'scale(1)';
+            cursorDot.style.transform = 'scale(1)';
+        });
+
+        // Stripe integration
+        const stripe = Stripe('your_stripe_publishable_key');
+        const elements = stripe.elements();
+        const cardElement = elements.create('card');
+        cardElement.mount('#card-element');
+
+        const paymentForm = document.getElementById('payment-form');
+        paymentForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const {token, error} = await stripe.createToken(cardElement);
+
+            if (error) {
+                const errorElement = document.getElementById('card-errors');
+                errorElement.textContent = error.message;
+            } else {
+                stripeTokenHandler(token);
+            }
+        });
+
+        function stripeTokenHandler(token) {
+            // Here you would send the token to your server.
+            console.log(token);
+            alert('Payment processed successfully!');
+        }
+
+        // Modal functionality
+        const modal = document.getElementById("paymentModal");
+        const span = document.getElementsByClassName("close")[0];
+
+        function showPaymentModal(planName, planPrice) {
+            document.getElementById("planName").textContent = planName;
+            document.getElementById("planPrice").textContent = planPrice;
+            modal.style.display = "block";
+        }
+
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
     </script>
 </body>
 </html>
