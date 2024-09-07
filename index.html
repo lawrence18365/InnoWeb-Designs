@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
     <style>
         :root {
             --primary-color: #4a90e3;
@@ -34,6 +36,7 @@
             line-height: 1.6;
             color: var(--text-color);
             background-color: var(--bg-color);
+            overflow-x: hidden;
         }
 
         .container {
@@ -164,13 +167,15 @@
             font-family: 'Playfair Display', serif;
             font-size: 72px;
             margin-bottom: 20px;
-            animation: fadeInUp 1s ease;
+            opacity: 0;
+            transform: translateY(50px);
         }
 
         .hero-content p {
             font-size: 24px;
             margin-bottom: 30px;
-            animation: fadeInUp 1s ease 0.3s;
+            opacity: 0;
+            transform: translateY(50px);
         }
 
         .cta-button {
@@ -182,10 +187,11 @@
             text-decoration: none;
             font-weight: bold;
             transition: all 0.3s ease;
-            animation: fadeInUp 1s ease 0.6s;
             font-size: 18px;
             text-transform: uppercase;
             letter-spacing: 1px;
+            opacity: 0;
+            transform: translateY(50px);
         }
 
         .cta-button:hover {
@@ -196,6 +202,8 @@
 
         .section {
             padding: 120px 0;
+            position: relative;
+            overflow: hidden;
         }
 
         .section-title {
@@ -205,6 +213,8 @@
             margin-bottom: 60px;
             position: relative;
             color: var(--secondary-color);
+            opacity: 0;
+            transform: translateY(50px);
         }
 
         .section-title::after {
@@ -229,6 +239,8 @@
             text-align: center;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+            transform: translateY(50px);
         }
 
         .service-card:hover {
@@ -261,6 +273,8 @@
             border-radius: 15px;
             cursor: pointer;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(50px);
         }
 
         .portfolio-item img {
@@ -314,6 +328,8 @@
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             margin: 20px;
+            opacity: 0;
+            transform: translateY(50px);
         }
 
         .testimonial-text {
@@ -361,6 +377,8 @@
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+            transform: translateY(50px);
         }
 
         .blog-card:hover {
@@ -417,6 +435,8 @@
         .contact-info {
             flex: 1;
             padding-right: 60px;
+            opacity: 0;
+            transform: translateX(-50px);
         }
 
         .contact-info h3 {
@@ -437,6 +457,8 @@
             padding: 40px;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateX(50px);
         }
 
         .form-group {
@@ -483,6 +505,8 @@
             flex: 1;
             min-width: 250px;
             margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(50px);
         }
 
         .footer-section h3 {
@@ -532,17 +556,8 @@
             padding-top: 30px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             font-size: 14px;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            opacity: 0;
+            transform: translateY(50px);
         }
 
         @media (max-width: 768px) {
@@ -567,9 +582,43 @@
                 margin-bottom: 40px;
             }
         }
+
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--accent-color);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            transition-property: background, transform;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+        }
+
+        .cursor-dot {
+            width: 4px;
+            height: 4px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+        }
+
+        .expand {
+            transform: translate(-50%, -50%) scale(2);
+            background-color: var(--accent-color);
+            opacity: 0.5;
+        }
     </style>
 </head>
 <body>
+    <div class="cursor"></div>
+    <div class="cursor-dot"></div>
+
     <header>
         <nav class="container">
             <a href="#" class="logo">
@@ -787,9 +836,100 @@
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="https://cdn.jsdeliv r.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
     <script>
         $(document).ready(function() {
+            // GSAP Animations
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Hero animations
+            gsap.to('.hero-content h1', { opacity: 1, y: 0, duration: 1, delay: 0.5 });
+            gsap.to('.hero-content p', { opacity: 1, y: 0, duration: 1, delay: 0.7 });
+            gsap.to('.hero-content .cta-button', { opacity: 1, y: 0, duration: 1, delay: 0.9 });
+
+            // Scroll animations
+            gsap.utils.toArray('.section-title').forEach(title => {
+                gsap.to(title, {
+                    scrollTrigger: {
+                        trigger: title,
+                        start: 'top 80%',
+                        end: 'bottom 20%',
+                        toggleActions: 'play none none reverse'
+                    },
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8
+                });
+            });
+
+            gsap.utils.toArray('.service-card, .portfolio-item, .blog-card, .testimonial-item').forEach(item => {
+                gsap.to(item, {
+                    scrollTrigger: {
+                        trigger: item,
+                        start: 'top 80%',
+                        end: 'bottom 20%',
+                        toggleActions: 'play none none reverse'
+                    },
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    stagger: 0.2
+                });
+            });
+
+            gsap.to('.contact-info', {
+                scrollTrigger: {
+                    trigger: '.contact-info',
+                    start: 'top 80%',
+                    end: 'bottom 20%',
+                    toggleActions: 'play none none reverse'
+                },
+                opacity: 1,
+                x: 0,
+                duration: 0.8
+            });
+
+            gsap.to('.contact-form', {
+                scrollTrigger: {
+                    trigger: '.contact-form',
+                    start: 'top 80%',
+                    end: 'bottom 20%',
+                    toggleActions: 'play none none reverse'
+                },
+                opacity: 1,
+                x: 0,
+                duration: 0.8
+            });
+
+            gsap.utils.toArray('.footer-section').forEach(section => {
+                gsap.to(section, {
+                    scrollTrigger: {
+                        trigger: section,
+                        start: 'top 80%',
+                        end: 'bottom 20%',
+                        toggleActions: 'play none none reverse'
+                    },
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    stagger: 0.2
+                });
+            });
+
+            gsap.to('.footer-bottom', {
+                scrollTrigger: {
+                    trigger: '.footer-bottom',
+                    start: 'top 80%',
+                    end: 'bottom 20%',
+                    toggleActions: 'play none none reverse'
+                },
+                opacity: 1,
+                y: 0,
+                duration: 0.8
+            });
+
             // Smooth scrolling
             $('a[href^="#"]').on('click', function(event) {
                 var target = $(this.getAttribute('href'));
@@ -821,14 +961,6 @@
 
             // Scroll animations
             $(window).scroll(function() {
-                $('.service-card, .portfolio-item, .blog-card').each(function() {
-                    var bottom_of_object = $(this).offset().top + $(this).outerHeight();
-                    var bottom_of_window = $(window).scrollTop() + $(window).height();
-                    if (bottom_of_window > bottom_of_object) {
-                        $(this).addClass('animated fadeInUp');
-                    }
-                });
-
                 if ($(this).scrollTop() > 50) {
                     $('header').addClass('scrolled');
                 } else {
@@ -840,6 +972,29 @@
             $(window).scroll(function() {
                 var scrolle = $(window).scrollTop();
                 $(".hero").css("background-position","50% " + (scrolle * 0.5) + "px");
+            });
+
+            // Custom cursor
+            const cursor = document.querySelector('.cursor');
+            const cursorDot = document.querySelector('.cursor-dot');
+
+            document.addEventListener('mousemove', e => {
+                cursor.setAttribute("style", "top: "+(e.pageY - 10)+"px; left: "+(e.pageX - 10)+"px;")
+                cursorDot.setAttribute("style", "top: "+(e.pageY)+"px; left: "+(e.pageX)+"px;")
+            })
+
+            document.addEventListener('click', () => {
+                cursor.classList.add("expand");
+                setTimeout(() => {
+                    cursor.classList.remove("expand");
+                }, 500)
+            })
+
+            // Hover effect for interactive elements
+            $('a, button, .portfolio-item, .blog-card').on('mouseenter', function() {
+                cursor.classList.add('expand');
+            }).on('mouseleave', function() {
+                cursor.classList.remove('expand');
             });
         });
     </script>
