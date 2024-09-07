@@ -1,63 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <base href="https://lawrence18365.github.io/InnoWeb-Designs">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https:; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:;">
-    <title>InnoWeb Designs | Innovative Web Solutions</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <title>InnoWeb Studio | Cutting-Edge Digital Experiences</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
     <style>
         :root {
-            --primary-color: #4a90e3;
-            --secondary-color: #2c3e50;
-            --accent-color: #e74c3c;
-            --text-color: #333;
-            --bg-color: #f9f9f9;
-            --light-gray: #f0f0f0;
-            --dark-gray: #333;
-            --white: #ffffff;
+            --primary-color: #0a192f;
+            --secondary-color: #112240;
+            --accent-color: #64ffda;
+            --text-color: #8892b0;
+            --heading-color: #ccd6f6;
+            --transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
         }
 
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
 
         body {
             font-family: 'Poppins', sans-serif;
             line-height: 1.6;
             color: var(--text-color);
-            background-color: var(--bg-color);
+            background-color: var(--primary-color);
             overflow-x: hidden;
         }
 
         .container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 5%;
         }
 
         header {
-            background-color: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             position: fixed;
             width: 100%;
             top: 0;
+            left: 0;
             z-index: 1000;
-            transition: all 0.3s ease;
-        }
-
-        header.scrolled {
-            background-color: var(--secondary-color);
+            background-color: rgba(10, 25, 47, 0.85);
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
         }
 
         nav {
@@ -68,45 +57,27 @@
         }
 
         .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 28px;
-            font-weight: bold;
-            color: var(--primary-color);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-color);
             text-decoration: none;
-            display: flex;
-            align-items: center;
-            transition: color 0.3s ease;
-        }
-
-        header.scrolled .logo {
-            color: var(--white);
-        }
-
-        .logo-icon {
-            margin-right: 10px;
-            font-size: 32px;
+            letter-spacing: 1px;
         }
 
         .nav-links {
             display: flex;
-            list-style: none;
-        }
-
-        .nav-links li {
-            margin-left: 40px;
+            gap: 30px;
         }
 
         .nav-links a {
+            color: var(--heading-color);
             text-decoration: none;
-            color: var(--text-color);
-            font-weight: 500;
-            transition: color 0.3s ease;
+            font-weight: 400;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
             position: relative;
-            font-size: 16px;
-        }
-
-        header.scrolled .nav-links a {
-            color: var(--white);
         }
 
         .nav-links a::after {
@@ -117,7 +88,7 @@
             bottom: -5px;
             left: 0;
             background-color: var(--accent-color);
-            transition: width 0.3s ease;
+            transition: var(--transition);
         }
 
         .nav-links a:hover::after {
@@ -128,61 +99,41 @@
             height: 100vh;
             display: flex;
             align-items: center;
-            justify-content: center;
-            text-align: center;
             position: relative;
             overflow: hidden;
         }
 
-        #hero-canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-
         .hero-content {
             max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
+            z-index: 1;
         }
 
-        .hero-content h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 72px;
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
             margin-bottom: 20px;
-            opacity: 0;
-            transform: translateY(50px);
-            color: var(--white);
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            line-height: 1.2;
+            color: var(--heading-color);
         }
 
-        .hero-content p {
-            font-size: 24px;
-            margin-bottom: 30px;
-            opacity: 0;
-            transform: translateY(50px);
-            color: var(--white);
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            max-width: 600px;
         }
 
         .cta-button {
             display: inline-block;
-            background-color: var(--accent-color);
-            color: var(--white);
-            padding: 15px 40px;
-            border-radius: 50px;
+            background-color: transparent;
+            color: var(--accent-color);
+            padding: 12px 30px;
             text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            font-size: 18px;
+            font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            opacity: 0;
-            transform: translateY(50px);
+            transition: var(--transition);
+            border: 1px solid var(--accent-color);
+            cursor: pointer;
             position: relative;
             overflow: hidden;
         }
@@ -194,49 +145,29 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(
-                120deg,
-                transparent,
-                rgba(255, 255, 255, 0.3),
-                transparent
-            );
-            transition: all 0.6s;
-        }
-
-        .cta-button:hover::before {
-            left: 100%;
+            background-color: var(--accent-color);
+            transition: var(--transition);
+            z-index: -1;
         }
 
         .cta-button:hover {
-            background-color: #c0392b;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            color: var(--primary-color);
+        }
+
+        .cta-button:hover::before {
+            left: 0;
         }
 
         .section {
-            padding: 120px 0;
-            position: relative;
-            overflow: hidden;
+            padding: 100px 0;
         }
 
         .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 48px;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 50px;
             text-align: center;
-            margin-bottom: 60px;
-            position: relative;
-            color: var(--secondary-color);
-            opacity: 0;
-            transform: translateY(50px);
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 100px;
-            height: 3px;
-            background-color: var(--accent-color);
-            margin: 20px auto 0;
+            color: var(--heading-color);
         }
 
         .services-grid {
@@ -245,86 +176,107 @@
             gap: 40px;
         }
 
-        .service-card {
-            background-color: var(--white);
-            border-radius: 15px;
+        .service-item {
+            background-color: var(--secondary-color);
             padding: 40px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            opacity: 0;
-            transform: translateY(50px);
+            border-radius: 10px;
+            transition: var(--transition);
             position: relative;
             overflow: hidden;
         }
 
-        .service-card::before {
+        .service-item::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 80%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--accent-color);
+            opacity: 0.1;
+            transition: var(--transition);
         }
 
-        .service-card:hover::before {
-            opacity: 1;
-            animation: ripple 1s cubic-bezier(0, 0.5, 0.5, 1);
+        .service-item:hover::before {
+            top: 0;
         }
 
-        @keyframes ripple {
-            to {
-                transform: scale(1.5);
-                opacity: 0;
-            }
-        }
-
-        .service-card:hover {
-            transform: translateY(-15px) scale(1.05);
+        .service-item:hover {
+            transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
 
         .service-icon {
-            font-size: 64px;
-            color: var(--primary-color);
-            margin-bottom: 30px;
-            transition: transform 0.3s ease;
-        }
-
-        .service-card:hover .service-icon {
-            transform: scale(1.2);
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
         }
 
         .service-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 28px;
-            margin-bottom: 20px;
-            color: var(--secondary-color);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--heading-color);
+        }
+
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            position: relative;
+        }
+
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--accent-color);
+            transform: translateY(-50%);
+        }
+
+        .process-step {
+            text-align: center;
+            max-width: 200px;
+            position: relative;
+            background-color: var(--primary-color);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .process-step-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+
+        .process-step-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--heading-color);
+            margin-bottom: 10px;
         }
 
         .portfolio-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 40px;
         }
 
         .portfolio-item {
             position: relative;
             overflow: hidden;
-            border-radius: 15px;
+            border-radius: 10px;
             cursor: pointer;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            opacity: 0;
-            transform: translateY(50px);
         }
 
         .portfolio-item img {
             width: 100%;
             height: auto;
-            transition: transform 0.5s ease;
+            transition: var(--transition);
         }
 
         .portfolio-item:hover img {
@@ -337,356 +289,207 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(74, 144, 226, 0.9);
+            background-color: rgba(10, 25, 47, 0.9);
             display: flex;
-            align-items: center;
+            flex-direction: column;
             justify-content: center;
+            align-items: center;
             opacity: 0;
-            transition: opacity 0.5s ease;
+            transition: var(--transition);
         }
 
         .portfolio-item:hover .portfolio-overlay {
             opacity: 1;
         }
 
-        .portfolio-overlay-content {
-            color: var(--white);
-            text-align: center;
-            padding: 20px;
-            transform: translateY(20px);
-            opacity: 0;
-            transition: all 0.3s ease;
+        .portfolio-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--heading-color);
+            margin-bottom: 10px;
         }
 
-        .portfolio-item:hover .portfolio-overlay-content {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .portfolio-overlay-content h3 {
-            font-size: 28px;
-            margin-bottom: 15px;
+        .portfolio-category {
+            font-size: 1rem;
+            color: var(--accent-color);
         }
 
         .testimonials-slider {
-            max-width: 1000px;
+            max-width: 800px;
             margin: 0 auto;
             text-align: center;
         }
 
         .testimonial-item {
             padding: 40px;
-            background-color: var(--white);
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            background-color: var(--secondary-color);
+            border-radius: 10px;
             margin: 20px;
             opacity: 0;
-            transform: translateY(50px);
+            transition: var(--transition);
         }
 
         .testimonial-text {
-            font-size: 20px;
+            font-size: 1.2rem;
             font-style: italic;
-            margin-bottom: 30px;
-            position: relative;
-            line-height: 1.8;
-        }
-
-        .testimonial-text::before,
-        .testimonial-text::after {
-            content: '"';
-            font-size: 72px;
-            color: var(--primary-color);
-            opacity: 0.3;
-            position: absolute;
-        }
-
-        .testimonial-text::before {
-            top: -40px;
-            left: -20px;
-        }
-
-        .testimonial-text::after {
-            bottom: -70px;
-            right: -20px;
+            margin-bottom: 20px;
         }
 
         .testimonial-author {
-            font-weight: bold;
-            color: var(--secondary-color);
-            font-size: 18px;
+            font-weight: 600;
+            color: var(--heading-color);
         }
 
-        .blog-grid {
+        .testimonial-company {
+            font-size: 0.9rem;
+            color: var(--accent-color);
+        }
+
+        .pricing-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 40px;
         }
 
-        .blog-card {
-            background-color: var(--white);
-            border-radius: 15px;
+        .pricing-item {
+            background-color: var(--secondary-color);
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            opacity: 0;
-            transform: translateY(50px);
         }
 
-        .blog-card:hover {
+        .pricing-item::before {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--accent-color);
+            opacity: 0.1;
+            transition: var(--transition);
+        }
+
+        .pricing-item:hover::before {
+            top: 0;
+        }
+
+        .pricing-item:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
 
-        .blog-card img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .blog-card:hover img {
-            transform: scale(1.1);
-        }
-
-        .blog-content {
-            padding: 30px;
-        }
-
-        .blog-title {
-            font-size: 24px;
-            margin-bottom: 15px;
-            color: var(--secondary-color);
-            font-family: 'Playfair Display', serif;
-        }
-
-        .blog-excerpt {
-            font-size: 16px;
-            color: var(--text-color);
+        .pricing-title {
+            font-size: 1.5rem;
+            font-weight: 600;
             margin-bottom: 20px;
+            color: var(--heading-color);
         }
 
-        .read-more {
-            display: inline-block;
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s ease;
-            font-size: 16px;
-            position: relative;
-        }
-
-        .read-more::after {
-            content: '→';
-            position: absolute;
-            right: -20px;
-            top: 50%;
-            transform: translateY(-50%);
-            opacity: 0;
-            transition: all 0.3s ease;
-        }
-
-        .read-more:hover {
+        .pricing-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
             color: var(--accent-color);
         }
 
-        .read-more:hover::after {
-            right: -25px;
-            opacity: 1;
+        .pricing-features {
+            list-style-type: none;
+            margin-bottom: 30px;
+        }
+
+        .pricing-features li {
+            margin-bottom: 10px;
         }
 
         #contact {
-            background-color: var(--light-gray);
-        }
-
-        .contact-wrapper {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-        }
-
-        .contact-info {
-            flex: 1;
-            padding-right: 60px;
-            opacity: 0;
-            transform: translateX(-50px);
-        }
-
-        .contact-info h3 {
-            font-size: 32px;
-            margin-bottom: 30px;
-            color: var(--secondary-color);
-            font-family: 'Playfair Display', serif;
-        }
-
-        .contact-info p {
-            font-size: 18px;
-            margin-bottom: 20px;
+            background-color: var(--secondary-color);
         }
 
         .contact-form {
-            flex: 1;
-            background-color: var(--white);
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            opacity: 0;
-            transform: translateX(50px);
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         .form-group {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--heading-color);
         }
 
         .form-group input,
-        .form-group select,
         .form-group textarea {
             width: 100%;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--heading-color);
             font-family: 'Poppins', sans-serif;
-            font-size: 16px;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            font-size: 1rem;
+            transition: var(--transition);
         }
 
         .form-group input:focus,
-        .form-group select:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.3);
+            border-color: var(--accent-color);
+            box-shadow: 0 0 10px rgba(100, 255, 218, 0.2);
         }
 
         .form-group textarea {
-            min-height: 200px;
+            height: 150px;
         }
 
         footer {
             background-color: var(--secondary-color);
-            color: var(--white);
-            padding: 80px 0 40px;
+            text-align: center;
+            padding: 40px 0;
         }
 
-        .footer-content {
+        .footer-links {
             display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            margin-bottom: 40px;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
         }
 
-        .footer-section {
-            flex: 1;
-            min-width: 250px;
-            margin-bottom: 40px;
-            opacity: 0;
-            transform: translateY(50px);
-        }
-
-        .footer-section h3 {
-            margin-bottom: 25px;
-            color: var(--accent-color);
-            font-size: 24px;
-            font-family: 'Playfair Display', serif;
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section ul li {
-            margin-bottom: 15px;
-        }
-
-        .footer-section ul li a {
-            color: var(--white);
+        .footer-links a {
+            color: var(--heading-color);
             text-decoration: none;
-            transition: color 0.3s ease;
-            font-size: 16px;
+            font-size: 0.9rem;
+            transition: var(--transition);
         }
 
-        .footer-section ul li a:hover {
+        .footer-links a:hover {
             color: var(--accent-color);
         }
 
-        .social-icons {
-            margin-top: 30px;
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
         }
 
-        .social-icons a {
-            color: var(--white);
-            font-size: 28px;
-            margin-right: 20px;
-            transition: color 0.3s ease, transform 0.3s ease;
+        .social-links a {
+            color: var(--heading-color);
+            font-size: 1.5rem;
+            transition: var(--transition);
         }
 
-        .social-icons a:hover {
+        .social-links a:hover {
             color: var(--accent-color);
             transform: translateY(-5px);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            margin-top: 40px;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 14px;
-            opacity: 0;
-            transform: translateY(50px);
-        }
-
-        @media (max-width: 768px) {
-            .hero-content h1 {
-                font-size: 48px;
-            }
-
-            .hero-content p {
-                font-size: 18px;
-            }
-
-            .section-title {
-                font-size: 36px;
-            }
-
-            .contact-wrapper {
-                flex-direction: column;
-            }
-
-            .contact-info {
-                padding-right: 0;
-                margin-bottom: 40px;
-            }
-        }
-
-        .cursor {
-            width: 20px;
-            height: 20px;
-            border: 2px solid var(--accent-color);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            transition: all 0.3s ease;
-            transition-property: background, transform;
-            transform: translate(-50%, -50%);
-            z-index: 9999;
-        }
-
-        .cursor-dot {
-            width: 4px;
-            height: 4px;
-            background-color: var(--accent-color);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            transition: all 0.3s ease;
-            transform: translate(-50%, -50%);
-            z-index: 9999;
-        }
-
-        .expand {
-            transform: translate(-50%, -50%) scale(2);
-            background-color: var(--accent-color);
-            opacity: 0.5;
         }
 
         .scroll-to-top {
@@ -694,19 +497,18 @@
             bottom: 20px;
             right: 20px;
             background-color: var(--accent-color);
-            color: var(--white);
+            color: var(--primary-color);
             width: 50px;
             height: 50px;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 24px;
+            font-size: 1.5rem;
             cursor: pointer;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 1000;
+            transition: var(--transition);
         }
 
         .scroll-to-top.show {
@@ -714,67 +516,104 @@
             visibility: visible;
         }
 
-        .scroll-to-top:hover {
-            background-color: var(--primary-color);
-            transform: translateY(-5px);
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .process-steps {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .process-step {
+                margin-bottom: 30px;
+            }
+
+            .nav-links {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="cursor"></div>
-    <div class="cursor-dot"></div>
-
     <header>
         <nav class="container">
-            <a href="#" class="logo">
-                <i class="fas fa-code logo-icon"></i>
-                InnoWeb Designs
-            </a>
-            <ul class="nav-links">
-                <li><a href="#services">Services</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#testimonials">Testimonials</a></li>
-                <li><a href="#blog">Blog</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+<a href="#" class="logo">InnoWeb Studio</a>
+            <div class="nav-links">
+                <a href="#services">Services</a>
+                <a href="#process">Process</a>
+                <a href="#portfolio">Portfolio</a>
+                <a href="#testimonials">Testimonials</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#contact">Contact</a>
+            </div>
         </nav>
     </header>
 
     <main>
         <section class="hero">
-            <canvas id="hero-canvas"></canvas>
             <div class="container">
                 <div class="hero-content">
-                    <h1>Innovative Web Solutions for Your Business</h1>
-                    <p>We create stunning, user-friendly websites that drive results</p>
-                    <a href="#contact" class="cta-button">Get a Free Consultation</a>
+                    <h1 class="animate-on-scroll">Elevating Digital Experiences</h1>
+                    <p class="animate-on-scroll">We craft cutting-edge websites that blend innovative design with powerful functionality, driving your business forward in the digital age.</p>
+                    <a href="#contact" class="cta-button animate-on-scroll">Start Your Journey</a>
                 </div>
             </div>
+            <div class="hero-background"></div>
         </section>
 
         <section id="services" class="section">
             <div class="container">
-                <h2 class="section-title">Our Services</h2>
+                <h2 class="section-title animate-on-scroll">Our Expertise</h2>
                 <div class="services-grid">
-                    <div class="service-card">
-                        <div class="service-icon"><i class="fas fa-laptop-code"></i></div>
-                        <h3 class="service-title">Web Design</h3>
-                        <p>Custom-designed websites that reflect your brand and engage your audience</p>
+                    <div class="service-item animate-on-scroll">
+                        <div class="service-icon">&#9881;</div>
+                        <h3 class="service-title">Innovative Design</h3>
+                        <p>Crafting visually stunning and user-centric interfaces that captivate and engage your audience.</p>
                     </div>
-                    <div class="service-card">
-                        <div class="service-icon"><i class="fas fa-mobile-alt"></i></div>
-                        <h3 class="service-title">Responsive Development</h3>
-                        <p>Fully responsive websites that look great on all devices</p>
+                    <div class="service-item animate-on-scroll">
+                        <div class="service-icon">&#128187;</div>
+                        <h3 class="service-title">Advanced Development</h3>
+                        <p>Building robust, scalable websites using cutting-edge technologies and best practices.</p>
                     </div>
-                    <div class="service-card">
-                        <div class="service-icon"><i class="fas fa-search"></i></div>
-                        <h3 class="service-title">SEO Optimization</h3>
-                        <p>Improve your search engine rankings and drive organic traffic</p>
+                    <div class="service-item animate-on-scroll">
+                        <div class="service-icon">&#128200;</div>
+                        <h3 class="service-title">Performance Optimization</h3>
+                        <p>Enhancing website speed and efficiency to deliver seamless user experiences and improve SEO.</p>
                     </div>
-                    <div class="service-card">
-                        <div class="service-icon"><i class="fas fa-shopping-cart"></i></div>
-                        <h3 class="service-title">E-commerce Solutions</h3>
-                        <p>Powerful online stores that help you sell products and services</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="process" class="section">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll">Our Process</h2>
+                <div class="process-steps">
+                    <div class="process-step animate-on-scroll">
+                        <div class="process-step-number">01</div>
+                        <h3 class="process-step-title">Discovery</h3>
+                        <p>Understanding your goals, audience, and vision to lay the foundation for success.</p>
+                    </div>
+                    <div class="process-step animate-on-scroll">
+                        <div class="process-step-number">02</div>
+                        <h3 class="process-step-title">Strategy</h3>
+                        <p>Developing a comprehensive plan tailored to your unique needs and objectives.</p>
+                    </div>
+                    <div class="process-step animate-on-scroll">
+                        <div class="process-step-number">03</div>
+                        <h3 class="process-step-title">Design</h3>
+                        <p>Creating visually compelling and user-friendly interfaces that align with your brand.</p>
+                    </div>
+                    <div class="process-step animate-on-scroll">
+                        <div class="process-step-number">04</div>
+                        <h3 class="process-step-title">Development</h3>
+                        <p>Bringing designs to life with clean, efficient, and scalable code.</p>
+                    </div>
+                    <div class="process-step animate-on-scroll">
+                        <div class="process-step-number">05</div>
+                        <h3 class="process-step-title">Launch & Optimize</h3>
+                        <p>Deploying your site and continuously improving its performance and effectiveness.</p>
                     </div>
                 </div>
             </div>
@@ -782,33 +621,27 @@
 
         <section id="portfolio" class="section">
             <div class="container">
-                <h2 class="section-title">Our Portfolio</h2>
+                <h2 class="section-title animate-on-scroll">Our Work</h2>
                 <div class="portfolio-grid">
-                    <div class="portfolio-item">
-                        <img src="https://page-images.websim.ai/Modern%20e-commerce%20website%20design_300x200x5xxC176IvMSYtWXMYx5f66a3fa490b4.jpg" alt="Modern e-commerce website design" width="300" height="200">
+                    <div class="portfolio-item animate-on-scroll">
+                        <img src="https://page-images.websim.ai/Elegant%20e-commerce%20website_300x200x5xxC176IvMSYtWXMYx29e92f6a6c58d.jpg" alt="E-commerce Website">
                         <div class="portfolio-overlay">
-                            <div class="portfolio-overlay-content">
-                                <h3>E-commerce Website</h3>
-                                <p>A sleek and user-friendly online store</p>
-                            </div>
+                            <h3 class="portfolio-title">LuxeCart</h3>
+                            <p class="portfolio-category">E-commerce</p>
                         </div>
                     </div>
-                    <div class="portfolio-item">
-                        <img src="https://page-images.websim.ai/Responsive%20blog%20design_300x200x5xxC176IvMSYtWXMYxfe2cf49c866f.jpg" alt="Responsive blog design" width="300" height="200">
+                    <div class="portfolio-item animate-on-scroll">
+                        <img src="https://page-images.websim.ai/Modern%20blog%20design_300x200x5xxC176IvMSYtWXMYx3b5b43b0e78f8.jpg" alt="Blog Website">
                         <div class="portfolio-overlay">
-                            <div class="portfolio-overlay-content">
-                                <h3>Blog Design</h3>
-                                <p>A clean and responsive blog layout</p>
-                            </div>
+                            <h3 class="portfolio-title">TechInsider</h3>
+                            <p class="portfolio-category">Blog</p>
                         </div>
                     </div>
-                    <div class="portfolio-item">
-                        <img src="https://page-images.websim.ai/Corporate%20website%20redesign_300x200x5xxC176IvMSYtWXMYx22218b6f1e003.jpg" alt="Corporate website redesign" width="300" height="200">
+                    <div class="portfolio-item animate-on-scroll">
+                        <img src="https://page-images.websim.ai/Sleek%20corporate%20website_300x200x5xxC176IvMSYtWXMYx685df04bc7c76.jpg" alt="Corporate Website">
                         <div class="portfolio-overlay">
-                            <div class="portfolio-overlay-content">
-                                <h3>Corporate Website</h3>
-                                <p>A professional and modern corporate site</p>
-                            </div>
+                            <h3 class="portfolio-title">InnovaCorp</h3>
+                            <p class="portfolio-category">Corporate</p>
                         </div>
                     </div>
                 </div>
@@ -817,51 +650,66 @@
 
         <section id="testimonials" class="section">
             <div class="container">
-                <h2 class="section-title">Client Testimonials</h2>
+                <h2 class="section-title animate-on-scroll">Client Testimonials</h2>
                 <div class="testimonials-slider">
                     <div class="testimonial-item">
-                        <p class="testimonial-text">"InnoWeb Designs transformed our online presence. Their team's creativity and technical expertise are unmatched."</p>
-                        <p class="testimonial-author">- John Smith, CEO of TechCorp</p>
+                        <p class="testimonial-text">"InnoWeb Studio transformed our online presence. Their innovative design and development approach resulted in a website that truly sets us apart from our competitors."</p>
+                        <p class="testimonial-author">Sarah Johnson</p>
+                        <p class="testimonial-company">CEO, TechVision Inc.</p>
                     </div>
                     <div class="testimonial-item">
-                        <p class="testimonial-text">"Working with InnoWeb was a game-changer for our business. They delivered a website that exceeded our expectations."</p>
-                        <p class="testimonial-author">- Sarah Johnson, Marketing Director at GreenLife</p>
+                        <p class="testimonial-text">"Working with InnoWeb Studio was a game-changer for our e-commerce business. They delivered a user-friendly, high-performance website that significantly boosted our conversions."</p>
+                        <p class="testimonial-author">Michael Chen</p>
+                        <p class="testimonial-company">Founder, EcoGoods</p>
                     </div>
                     <div class="testimonial-item">
-                        <p class="testimonial-text">"The team at InnoWeb Designs is professional, responsive, and incredibly talented. Highly recommended!"</p>
-                        <p class="testimonial-author">- Michael Brown, Founder of StartupX</p>
+                        <p class="testimonial-text">"The team at InnoWeb Studio are true professionals. Their attention to detail and commitment to excellence shines through in every aspect of our new corporate website."</p>
+                        <p class="testimonial-author">Emily Rodriguez</p>
+                        <p class="testimonial-company">Marketing Director, GlobalCorp</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="blog" class="section">
+        <section id="pricing" class="section">
             <div class="container">
-                <h2 class="section-title">Latest from Our Blog</h2>
-                <div class="blog-grid">
-                    <div class="blog-card">
-                        <img src="https://page-images.websim.ai/Web%20design%20trends%202023_300x200x5xxC176IvMSYtWXMYxdbedae31e384.jpg" alt="Web design trends 2023" width="300" height="200">
-                        <div class="blog-content">
-                            <h3 class="blog-title">Top Web Design Trends for 2023</h3>
-                            <p class="blog-excerpt">Discover the latest design trends that will shape the web in 2023 and beyond.</p>
-                            <a href="#" class="read-more">Read More</a>
-                        </div>
+                <h2 class="section-title animate-on-scroll">Investment Plans</h2>
+                <div class="pricing-grid">
+                    <div class="pricing-item animate-on-scroll">
+                        <h3 class="pricing-title">Startup</h3>
+                        <div class="pricing-price">$5,000</div>
+                        <ul class="pricing-features">
+                            <li>Custom 5-Page Website</li>
+                            <li>Responsive Design</li>
+                            <li>Basic SEO Optimization</li>
+                            <li>Contact Form Integration</li>
+                            <li>1 Month of Support</li>
+                        </ul>
+                        <a href="#contact" class="cta-button">Get Started</a>
                     </div>
-                    <div class="blog-card">
-                        <img src="https://page-images.websim.ai/SEO%20optimization%20tips_300x200x5xxC176IvMSYtWXMYxeab7e86d75f32.jpg" alt="SEO optimization tips" width="300" height="200">
-                        <div class="blog-content">
-                            <h3 class="blog-title">5 SEO Tips to Boost Your Website's Ranking</h3>
-                            <p class="blog-excerpt">Learn how to improve your website's search engine visibility with these expert tips.</p>
-                            <a href="#" class="read-more">Read More</a>
-                        </div>
+                    <div class="pricing-item animate-on-scroll">
+                        <h3 class="pricing-title">Growth</h3>
+                        <div class="pricing-price">$10,000</div>
+                        <ul class="pricing-features">
+                            <li>Custom 10-Page Website</li>
+                            <li>Advanced Responsive Design</li>
+                            <li>Comprehensive SEO Strategy</li>
+                            <li>E-commerce Integration</li>
+                            <li>3 Months of Support</li>
+                        </ul>
+                        <a href="#contact" class="cta-button">Get Started</a>
                     </div>
-                    <div class="blog-card">
-                        <img src="https://page-images.websim.ai/Mobile-first%20design_300x200x5xxC176IvMSYtWXMYx48f59f00c730e.jpg" alt="Mobile-first design" width="300" height="200">
-                        <div class="blog-content">
-                            <h3 class="blog-title">The Importance of Mobile-First Design</h3>
-                            <p class="blog-excerpt">Explore why mobile-first design is crucial for success in today's digital landscape.</p>
-                            <a href="#" class="read-more">Read More</a>
-                        </div>
+                    <div class="pricing-item animate-on-scroll">
+                        <h3 class="pricing-title">Enterprise</h3>
+                        <div class="pricing-price">Custom</div>
+                        <ul class="pricing-features">
+                            <li>Fully Custom Web Solution</li>
+                            <li>Advanced Functionality</li>
+                            <li>AI-Powered Features</li>
+                            <li>Comprehensive Digital Strategy</li>
+                            <li>Ongoing Support & Maintenance</li>
+                        </ul>
+                        <a href="#contact" class="cta-button">Contact Us</a>
                     </div>
                 </div>
             </div>
@@ -869,75 +717,43 @@
 
         <section id="contact" class="section">
             <div class="container">
-                <h2 class="section-title">Let's Connect</h2>
-                <div class="contact-wrapper">
-                    <div class="contact-info">
-                        <h3>We're Here for You</h3>
-                        <p><i class="fas fa-map-marker-alt"></i> 123 Web St, Digital City, 12345</p>
-                        <p><i class="fas fa-phone"></i> (555) 123-4567</p>
-                        <p><i class="fas fa-envelope"></i> info@innowebdesigns.com</p>
-                        <div class="social-icons">
-                            <a href="#"><i class="fab fa-facebook"></i></a>
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fab fa-linkedin"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                        </div>
+                <h2 class="section-title animate-on-scroll">Get In Touch</h2>
+                <form class="contact-form animate-on-scroll">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
                     </div>
-                    <form class="contact-form">
-                        <div class="form-group">
-                            <input type="text" name="name" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" name="email" placeholder="Your Email" required>
-                        </div>
-                        <div class="form-group">
-                            <select name="service" required>
-                                <option value="">Select a Service</option>
-                                <option value="web-design">Web Design</option>
-                                <option value="development">Web Development</option>
-                                <option value="seo">SEO Optimization</option>
-                                <option value="ecommerce">E-commerce Solutions</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <textarea name="message" placeholder="Your Message" required></textarea>
-                        </div>
-                        <button type="submit" class="cta-button">Send Message</button>
-                    </form>
-                </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="cta-button">Send Message</button>
+                </form>
             </div>
         </section>
     </main>
 
     <footer>
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>About Us</h3>
-                    <p>InnoWeb Designs is a leading web design and development agency, creating innovative digital solutions for businesses worldwide.</p>
-                </div>
-                <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#portfolio">Portfolio</a></li>
-                        <li><a href="#testimonials">Testimonials</a></li>
-                        <li><a href="#blog">Blog</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Newsletter</h3>
-                    <p>Subscribe to our newsletter for the latest updates and insights.</p>
-                    <form>
-                        <input type="email" placeholder="Enter your email" required>
-                        <button type="submit" class="cta-button">Subscribe</button>
-                    </form>
-                </div>
+            <div class="footer-links">
+                <a href="#services">Services</a>
+                <a href="#process">Process</a>
+                <a href="#portfolio">Portfolio</a>
+                <a href="#testimonials">Testimonials</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#contact">Contact</a>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2023 InnoWeb Designs. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
             </div>
+            <p>&copy; 2023 InnoWeb Studio. All rights reserved.</p>
         </div>
     </footer>
 
@@ -945,231 +761,86 @@
         <i class="fas fa-chevron-up"></i>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
     <script>
-        // GSAP animations
+        // GSAP Animations
         gsap.registerPlugin(ScrollTrigger);
 
-        // Hero animations
-        gsap.from('.hero-content h1', { opacity: 0, y: 50, duration: 1, delay: 0.5 });
-        gsap.from('.hero-content p', { opacity: 0, y: 50, duration: 1, delay: 0.7 });
-        gsap.from('.hero-content .cta-button', { opacity: 0, y: 50, duration: 1, delay: 0.9 });
-
-        // Scroll animations
-        gsap.utils.toArray('.section-title').forEach(title => {
-            gsap.from(title, {
-                scrollTrigger: {
-                    trigger: title,
-                    start: 'top 80%',
-                },
-                opacity: 0,
+        // Animate elements on scroll
+        gsap.utils.toArray('.animate-on-scroll').forEach((element) => {
+            gsap.from(element, {
                 y: 50,
-                duration: 1
-            });
-        });
-
-        gsap.utils.toArray('.service-card').forEach((card, index) => {
-            gsap.from(card, {
-                scrollTrigger: {
-                    trigger: card,
-                    start: 'top 80%',
-                },
                 opacity: 0,
-                y: 50,
                 duration: 1,
-                delay: index * 0.2
-            });
-        });
-
-        gsap.utils.toArray('.portfolio-item').forEach((item, index) => {
-            gsap.from(item, {
                 scrollTrigger: {
-                    trigger: item,
+                    trigger: element,
                     start: 'top 80%',
-                },
-                opacity: 0,
-                y: 50,
-                duration: 1,
-                delay: index * 0.2
+                    end: 'top 20%',
+                    scrub: 1,
+                }
             });
         });
 
-        gsap.utils.toArray('.testimonial-item').forEach((item, index) => {
-            gsap.from(item, {
-                scrollTrigger: {
-                    trigger: item,
-                    start: 'top 80%',
-                },
-                opacity: 0,
-                y: 50,
-                duration: 1,
-                delay: index * 0.2
-            });
-        });
-
-        gsap.utils.toArray('.blog-card').forEach((card, index) => {
-            gsap.from(card, {
-                scrollTrigger: {
-                    trigger: card,
-                    start: 'top 80%',
-                },
-                opacity: 0,
-                y: 50,
-                duration: 1,
-                delay: index * 0.2
-            });
-        });
-
-        gsap.from('.contact-info', {
+        // Hero background animation
+        gsap.to('.hero-background', {
+            backgroundPosition: '100% 50%',
+            ease: 'none',
             scrollTrigger: {
-                trigger: '.contact-info',
-                start: 'top 80%',
-            },
-            opacity: 0,
-            x: -50,
-            duration: 1
+                trigger: '.hero',
+                start: 'top top',
+                end: 'bottom top',
+                scrub: true
+            }
         });
 
-        gsap.from('.contact-form', {
-            scrollTrigger: {
-                trigger: '.contact-form',
-                start: 'top 80%',
-            },
-            opacity: 0,
-            x: 50,
-            duration: 1
-        });
+        // Testimonial slider
+        let currentTestimonial = 0;
+        const testimonials = document.querySelectorAll('.testimonial-item');
+        const totalTestimonials = testimonials.length;
 
-        gsap.utils.toArray('.footer-section').forEach((section, index) => {
-            gsap.from(section, {
-                scrollTrigger: {
-                    trigger: section,
-                    start: 'top 90%',
-                },
-                opacity: 0,
-                y: 50,
-                duration: 1,
-                delay: index * 0.2
+        function showTestimonial(index) {
+            testimonials.forEach((item, i) => {
+                if (i === index) {
+                    item.style.opacity = 1;
+                    item.style.transform = 'translateX(0)';
+                } else {
+                    item.style.opacity = 0;
+                    item.style.transform = 'translateX(100%)';
+                }
             });
-        });
+        }
 
-        gsap.from('.footer-bottom', {
-            scrollTrigger: {
-                trigger: '.footer-bottom',
-                start: 'top 95%',
-            },
-            opacity: 0,
-            y: 50,
-            duration: 1
-        });
+        function nextTestimonial() {
+            currentTestimonial = (currentTestimonial + 1) % totalTestimonials;
+            showTestimonial(currentTestimonial);
+        }
 
-        // Custom cursor
-        const cursor = document.querySelector('.cursor');
-        const cursorDot = document.querySelector('.cursor-dot');
-
-        document.addEventListener('mousemove', e => {
-            gsap.to(cursor, { duration: 0.23, left: e.clientX, top: e.clientY });
-            gsap.to(cursorDot, { duration: 0.1, left: e.clientX, top: e.clientY });
-        });
-
-        document.addEventListener('mousedown', () => {
-            cursor.classList.add('expand');
-        });
-
-        document.addEventListener('mouseup', () => {
-            cursor.classList.remove('expand');
-        });
-
-        // Hover effect for interactive elements
-        const interactiveElements = document.querySelectorAll('a, button, .service-card, .portfolio-item, .blog-card');
-
-        interactiveElements.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursor.classList.add('expand');
-            });
-
-            el.addEventListener('mouseleave', () => {
-                cursor.classList.remove('expand');
-            });
-        });
-
-        // Testimonials slider
-        $('.testimonials-slider').slick({
-            dots: true,
-            infinite: true,
-            speed: 500,
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            autoplay: true,
-            autoplaySpeed: 5000,
-            fade: true,
-            cssEase: 'linear'
-        });
+        setInterval(nextTestimonial, 5000);
+        showTestimonial(currentTestimonial);
 
         // Scroll to top button
-        const scrollToTopButton = document.querySelector('.scroll-to-top');
+        const scrollToTopBtn = document.querySelector('.scroll-to-top');
 
         window.addEventListener('scroll', () => {
             if (window.pageYOffset > 100) {
-                scrollToTopButton.classList.add('show');
+                scrollToTopBtn.classList.add('show');
             } else {
-                scrollToTopButton.classList.remove('show');
+                scrollToTopBtn.classList.remove('show');
             }
         });
 
-        scrollToTopButton.addEventListener('click', () => {
+        scrollToTopBtn.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        // Header scroll effect
-        const header = document.querySelector('header');
-
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-
-        // Three.js background animation
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('hero-canvas'), alpha: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-
-        const geometry = new THREE.BufferGeometry();
-        const vertices = [];
-        const size = 2000;
-
-        for (let i = 0; i < 10000; i++) {
-            const x = (Math.random() - 0.5) * size;
-            const y = (Math.random() - 0.5) * size;
-            const z = (Math.random() - 0.5) * size;
-            vertices.push(x, y, z);
-        }
-
-        geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
-
-        const material = new THREE.PointsMaterial({ color: 0xffffff, size: 3 });
-        const points = new THREE.Points(geometry, material);
-        scene.add(points);
-
-        camera.position.z = 1000;
-
-        function animate() {
-            requestAnimationFrame(animate);
-            points.rotation.x += 0.0005;
-            points.rotation.y += 0.0005;
-            renderer.render(scene, camera);
-        }
-
-        animate();
-
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
         });
     </script>
 </body>
