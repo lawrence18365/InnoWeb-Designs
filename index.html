@@ -13,6 +13,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
         :root {
             --primary-color: #4a90e3;
@@ -129,26 +130,17 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            background: 
-                linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.1) 90%, rgba(255,255,255,0.2) 100%),
-                linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            background-blend-mode: overlay;
-            color: var(--white);
             position: relative;
             overflow: hidden;
         }
 
-        .hero::before {
-            content: '';
+        #hero-canvas {
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('https://websimcreationengine.com/innovative-design/hero-bg-pattern.svg') repeat;
-            opacity: 0.1;
-            animation: moveBackground 20s linear infinite;
-            z-index: 1;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
         }
 
         .hero-content {
@@ -158,17 +150,14 @@
             z-index: 2;
         }
 
-        @keyframes moveBackground {
-            0% { background-position: 0 0; }
-            100% { background-position: 100% 100%; }
-        }
-
         .hero-content h1 {
             font-family: 'Playfair Display', serif;
             font-size: 72px;
             margin-bottom: 20px;
             opacity: 0;
             transform: translateY(50px);
+            color: var(--white);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
 
         .hero-content p {
@@ -176,6 +165,8 @@
             margin-bottom: 30px;
             opacity: 0;
             transform: translateY(50px);
+            color: var(--white);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
 
         .cta-button {
@@ -192,6 +183,28 @@
             letter-spacing: 1px;
             opacity: 0;
             transform: translateY(50px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                120deg,
+                transparent,
+                rgba(255, 255, 255, 0.3),
+                transparent
+            );
+            transition: all 0.6s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
         }
 
         .cta-button:hover {
@@ -241,10 +254,36 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             opacity: 0;
             transform: translateY(50px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 80%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+            animation: ripple 1s cubic-bezier(0, 0.5, 0.5, 1);
+        }
+
+        @keyframes ripple {
+            to {
+                transform: scale(1.5);
+                opacity: 0;
+            }
         }
 
         .service-card:hover {
-            transform: translateY(-15px);
+            transform: translateY(-15px) scale(1.05);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
 
@@ -252,6 +291,11 @@
             font-size: 64px;
             color: var(--primary-color);
             margin-bottom: 30px;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.2);
         }
 
         .service-title {
@@ -309,6 +353,14 @@
             color: var(--white);
             text-align: center;
             padding: 20px;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .portfolio-item:hover .portfolio-overlay-content {
+            transform: translateY(0);
+            opacity: 1;
         }
 
         .portfolio-overlay-content h3 {
@@ -390,6 +442,11 @@
             width: 100%;
             height: 250px;
             object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .blog-card:hover img {
+            transform: scale(1.1);
         }
 
         .blog-content {
@@ -416,10 +473,26 @@
             font-weight: bold;
             transition: color 0.3s ease;
             font-size: 16px;
+            position: relative;
+        }
+
+        .read-more::after {
+            content: '→';
+            position: absolute;
+            right: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0;
+            transition: all 0.3s ease;
         }
 
         .read-more:hover {
             color: var(--accent-color);
+        }
+
+        .read-more:hover::after {
+            right: -25px;
+            opacity: 1;
         }
 
         #contact {
@@ -474,7 +547,7 @@
             border-radius: 8px;
             font-family: 'Poppins', sans-serif;
             font-size: 16px;
-            transition: border-color 0.3s ease;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         .form-group input:focus,
@@ -482,6 +555,7 @@
         .form-group textarea:focus {
             outline: none;
             border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.3);
         }
 
         .form-group textarea {
@@ -543,11 +617,12 @@
             color: var(--white);
             font-size: 28px;
             margin-right: 20px;
-            transition: color 0.3s ease;
+            transition: color 0.3s ease, transform 0.3s ease;
         }
 
         .social-icons a:hover {
             color: var(--accent-color);
+            transform: translateY(-5px);
         }
 
         .footer-bottom {
@@ -613,6 +688,36 @@
             background-color: var(--accent-color);
             opacity: 0.5;
         }
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--accent-color);
+            color: var(--white);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .scroll-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
     </style>
 </head>
 <body>
@@ -637,6 +742,7 @@
 
     <main>
         <section class="hero">
+            <canvas id="hero-canvas"></canvas>
             <div class="container">
                 <div class="hero-content">
                     <h1>Innovative Web Solutions for Your Business</h1>
@@ -777,7 +883,7 @@
                             <a href="#"><i class="fab fa-instagram"></i></a>
                         </div>
                     </div>
-                    <form id="contact-form" class="contact-form">
+                    <form class="contact-form">
                         <div class="form-group">
                             <input type="text" name="name" placeholder="Your Name" required>
                         </div>
@@ -785,14 +891,12 @@
                             <input type="email" name="email" placeholder="Your Email" required>
                         </div>
                         <div class="form-group">
-                            <input type="tel" name="phone" placeholder="Your Phone (optional)">
-                        </div>
-                        <div class="form-group">
-                            <select name="subject" required>
-                                <option value="" disabled selected>Select Subject</option>
-                                <option value="general">General Inquiry</option>
-                                <option value="quote">Request a Quote</option>
-                                <option value="support">Technical Support</option>
+                            <select name="service" required>
+                                <option value="">Select a Service</option>
+                                <option value="web-design">Web Design</option>
+                                <option value="development">Web Development</option>
+                                <option value="seo">SEO Optimization</option>
+                                <option value="ecommerce">E-commerce Solutions</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -810,7 +914,7 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>About Us</h3>
-                    <p>InnoWeb Designs is a leading web design agency specializing in creating innovative and user-friendly websites for businesses of all sizes. With our passion for cutting-edge technology and creative design, we help our clients establish a strong online presence and achieve their digital goals.</p>
+                    <p>InnoWeb Designs is a leading web design and development agency, creating innovative digital solutions for businesses worldwide.</p>
                 </div>
                 <div class="footer-section">
                     <h3>Quick Links</h3>
@@ -823,179 +927,249 @@
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h3>Contact Us</h3>
-                    <p>Email: info@innowebdesigns.com</p>
-                    <p>Phone: (555) 123-4567</p>
-                    <p>Address: 123 Web St, Digital City, 12345</p>
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to our newsletter for the latest updates and insights.</p>
+                    <form>
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit" class="cta-button">Subscribe</button>
+                    </form>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© 2023 InnoWeb Designs. All rights reserved.</p>
+                <p>&copy; 2023 InnoWeb Designs. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdeliv r.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+    <div class="scroll-to-top">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script>
-        $(document).ready(function() {
-            // GSAP Animations
-            gsap.registerPlugin(ScrollTrigger);
+        // GSAP animations
+        gsap.registerPlugin(ScrollTrigger);
 
-            // Hero animations
-            gsap.to('.hero-content h1', { opacity: 1, y: 0, duration: 1, delay: 0.5 });
-            gsap.to('.hero-content p', { opacity: 1, y: 0, duration: 1, delay: 0.7 });
-            gsap.to('.hero-content .cta-button', { opacity: 1, y: 0, duration: 1, delay: 0.9 });
+        // Hero animations
+        gsap.from('.hero-content h1', { opacity: 0, y: 50, duration: 1, delay: 0.5 });
+        gsap.from('.hero-content p', { opacity: 0, y: 50, duration: 1, delay: 0.7 });
+        gsap.from('.hero-content .cta-button', { opacity: 0, y: 50, duration: 1, delay: 0.9 });
 
-            // Scroll animations
-            gsap.utils.toArray('.section-title').forEach(title => {
-                gsap.to(title, {
-                    scrollTrigger: {
-                        trigger: title,
-                        start: 'top 80%',
-                        end: 'bottom 20%',
-                        toggleActions: 'play none none reverse'
-                    },
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.8
-                });
-            });
-
-            gsap.utils.toArray('.service-card, .portfolio-item, .blog-card, .testimonial-item').forEach(item => {
-                gsap.to(item, {
-                    scrollTrigger: {
-                        trigger: item,
-                        start: 'top 80%',
-                        end: 'bottom 20%',
-                        toggleActions: 'play none none reverse'
-                    },
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.8,
-                    stagger: 0.2
-                });
-            });
-
-            gsap.to('.contact-info', {
+        // Scroll animations
+        gsap.utils.toArray('.section-title').forEach(title => {
+            gsap.from(title, {
                 scrollTrigger: {
-                    trigger: '.contact-info',
+                    trigger: title,
                     start: 'top 80%',
-                    end: 'bottom 20%',
-                    toggleActions: 'play none none reverse'
                 },
-                opacity: 1,
-                x: 0,
-                duration: 0.8
+                opacity: 0,
+                y: 50,
+                duration: 1
             });
+        });
 
-            gsap.to('.contact-form', {
+        gsap.utils.toArray('.service-card').forEach((card, index) => {
+            gsap.from(card, {
                 scrollTrigger: {
-                    trigger: '.contact-form',
+                    trigger: card,
                     start: 'top 80%',
-                    end: 'bottom 20%',
-                    toggleActions: 'play none none reverse'
                 },
-                opacity: 1,
-                x: 0,
-                duration: 0.8
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                delay: index * 0.2
             });
+        });
 
-            gsap.utils.toArray('.footer-section').forEach(section => {
-                gsap.to(section, {
-                    scrollTrigger: {
-                        trigger: section,
-                        start: 'top 80%',
-                        end: 'bottom 20%',
-                        toggleActions: 'play none none reverse'
-                    },
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.8,
-                    stagger: 0.2
-                });
-            });
-
-            gsap.to('.footer-bottom', {
+        gsap.utils.toArray('.portfolio-item').forEach((item, index) => {
+            gsap.from(item, {
                 scrollTrigger: {
-                    trigger: '.footer-bottom',
+                    trigger: item,
                     start: 'top 80%',
-                    end: 'bottom 20%',
-                    toggleActions: 'play none none reverse'
                 },
-                opacity: 1,
-                y: 0,
-                duration: 0.8
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                delay: index * 0.2
             });
+        });
 
-            // Smooth scrolling
-            $('a[href^="#"]').on('click', function(event) {
-                var target = $(this.getAttribute('href'));
-                if (target.length) {
-                    event.preventDefault();
-                    $('html, body').stop().animate({
-                        scrollTop: target.offset().top - 100
-                    }, 1000);
-                }
+        gsap.utils.toArray('.testimonial-item').forEach((item, index) => {
+            gsap.from(item, {
+                scrollTrigger: {
+                    trigger: item,
+                    start: 'top 80%',
+                },
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                delay: index * 0.2
             });
+        });
 
-            // Testimonials slider
-            $('.testimonials-slider').slick({
-                dots: true,
-                infinite: true,
-                speed: 500,
-                fade: true,
-                cssEase: 'linear',
-                autoplay: true,
-                autoplaySpeed: 5000
+        gsap.utils.toArray('.blog-card').forEach((card, index) => {
+            gsap.from(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 80%',
+                },
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                delay: index * 0.2
             });
+        });
 
-            // Form submission
-            $('#contact-form').on('submit', function(e) {
-                e.preventDefault();
-                alert('Thank you for your message. We will get back to you soon!');
-                this.reset();
+        gsap.from('.contact-info', {
+            scrollTrigger: {
+                trigger: '.contact-info',
+                start: 'top 80%',
+            },
+            opacity: 0,
+            x: -50,
+            duration: 1
+        });
+
+        gsap.from('.contact-form', {
+            scrollTrigger: {
+                trigger: '.contact-form',
+                start: 'top 80%',
+            },
+            opacity: 0,
+            x: 50,
+            duration: 1
+        });
+
+        gsap.utils.toArray('.footer-section').forEach((section, index) => {
+            gsap.from(section, {
+                scrollTrigger: {
+                    trigger: section,
+                    start: 'top 90%',
+                },
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                delay: index * 0.2
             });
+        });
 
-            // Scroll animations
-            $(window).scroll(function() {
-                if ($(this).scrollTop() > 50) {
-                    $('header').addClass('scrolled');
-                } else {
-                    $('header').removeClass('scrolled');
-                }
-            });
+        gsap.from('.footer-bottom', {
+            scrollTrigger: {
+                trigger: '.footer-bottom',
+                start: 'top 95%',
+            },
+            opacity: 0,
+            y: 50,
+            duration: 1
+        });
 
-            // Parallax effect for hero section
-            $(window).scroll(function() {
-                var scrolle = $(window).scrollTop();
-                $(".hero").css("background-position","50% " + (scrolle * 0.5) + "px");
-            });
+        // Custom cursor
+        const cursor = document.querySelector('.cursor');
+        const cursorDot = document.querySelector('.cursor-dot');
 
-            // Custom cursor
-            const cursor = document.querySelector('.cursor');
-            const cursorDot = document.querySelector('.cursor-dot');
+        document.addEventListener('mousemove', e => {
+            gsap.to(cursor, { duration: 0.23, left: e.clientX, top: e.clientY });
+            gsap.to(cursorDot, { duration: 0.1, left: e.clientX, top: e.clientY });
+        });
 
-            document.addEventListener('mousemove', e => {
-                cursor.setAttribute("style", "top: "+(e.pageY - 10)+"px; left: "+(e.pageX - 10)+"px;")
-                cursorDot.setAttribute("style", "top: "+(e.pageY)+"px; left: "+(e.pageX)+"px;")
-            })
+        document.addEventListener('mousedown', () => {
+            cursor.classList.add('expand');
+        });
 
-            document.addEventListener('click', () => {
-                cursor.classList.add("expand");
-                setTimeout(() => {
-                    cursor.classList.remove("expand");
-                }, 500)
-            })
+        document.addEventListener('mouseup', () => {
+            cursor.classList.remove('expand');
+        });
 
-            // Hover effect for interactive elements
-            $('a, button, .portfolio-item, .blog-card').on('mouseenter', function() {
+        // Hover effect for interactive elements
+        const interactiveElements = document.querySelectorAll('a, button, .service-card, .portfolio-item, .blog-card');
+
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
                 cursor.classList.add('expand');
-            }).on('mouseleave', function() {
+            });
+
+            el.addEventListener('mouseleave', () => {
                 cursor.classList.remove('expand');
             });
+        });
+
+        // Testimonials slider
+        $('.testimonials-slider').slick({
+            dots: true,
+            infinite: true,
+            speed: 500,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 5000,
+            fade: true,
+            cssEase: 'linear'
+        });
+
+        // Scroll to top button
+        const scrollToTopButton = document.querySelector('.scroll-to-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 100) {
+                scrollToTopButton.classList.add('show');
+            } else {
+                scrollToTopButton.classList.remove('show');
+            }
+        });
+
+        scrollToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Header scroll effect
+        const header = document.querySelector('header');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Three.js background animation
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('hero-canvas'), alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+
+        const geometry = new THREE.BufferGeometry();
+        const vertices = [];
+        const size = 2000;
+
+        for (let i = 0; i < 10000; i++) {
+            const x = (Math.random() - 0.5) * size;
+            const y = (Math.random() - 0.5) * size;
+            const z = (Math.random() - 0.5) * size;
+            vertices.push(x, y, z);
+        }
+
+        geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+
+        const material = new THREE.PointsMaterial({ color: 0xffffff, size: 3 });
+        const points = new THREE.Points(geometry, material);
+        scene.add(points);
+
+        camera.position.z = 1000;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            points.rotation.x += 0.0005;
+            points.rotation.y += 0.0005;
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
         });
     </script>
 </body>
