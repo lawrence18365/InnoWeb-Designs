@@ -52,13 +52,6 @@
             transition: var(--transition);
         }
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-        }
-
         .logo {
             font-size: 1.5rem;
             font-weight: 700;
@@ -66,6 +59,8 @@
             text-decoration: none;
             letter-spacing: 1px;
             transition: var(--transition);
+            padding: 20px 0;
+            display: inline-block;
         }
 
         .logo:hover {
@@ -96,12 +91,12 @@
         }
 
         .hero h1 {
-            font-size: 6rem;
+            font-size: 5rem;
             font-weight: 800;
             line-height: 1.1;
             margin-bottom: 20px;
             color: var(--heading-color);
-            text-shadow: 0 0 10px rgba(230, 241, 255, 0.3);
+            text-shadow: 0 0 20px rgba(230, 241, 255, 0.5);
             animation: popIn 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
         }
 
@@ -120,7 +115,8 @@
             font-size: 1.2rem;
             margin-bottom: 40px;
             max-width: 600px;
-            color: var(--text-color);
+            color: var(--heading-color);
+            text-shadow: 0 0 10px rgba(230, 241, 255, 0.3);
             animation: fadeIn 1s ease-out 0.5s both;
         }
 
@@ -229,51 +225,9 @@
             color: var(--heading-color);
         }
 
-        .process-steps {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 50px;
-            position: relative;
-        }
-
-        .process-steps::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
-            transform: translateY(-50%);
-        }
-
-        .process-step {
-            text-align: center;
-            max-width: 200px;
-            position: relative;
-            background-color: var(--primary-color);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .process-step-number {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--accent-color);
-            margin-bottom: 10px;
-        }
-
-        .process-step-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--heading-color);
-            margin-bottom: 10px;
-        }
-
         .pricing-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 40px;
         }
 
@@ -286,6 +240,9 @@
             position: relative;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         .pricing-item::before {
@@ -326,6 +283,7 @@
             list-style-type: none;
             margin-bottom: 30px;
             padding: 0 20px;
+            flex-grow: 1;
         }
 
         .pricing-features li {
@@ -339,6 +297,41 @@
             position: absolute;
             left: 0;
             color: var(--accent-color);
+        }
+
+        .testimonials {
+            background-color: var(--secondary-color);
+            padding: 80px 0;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .testimonial-item {
+            background-color: var(--primary-color);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial-content {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+
+        .testimonial-image {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 20px;
         }
 
         #contact {
@@ -391,24 +384,6 @@
             background-color: var(--secondary-color);
             text-align: center;
             padding: 40px 0;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 20px;
-        }
-
-        .footer-links a {
-            color: var(--heading-color);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: var(--transition);
-        }
-
-        .footer-links a:hover {
-            color: var(--accent-color);
         }
 
         .social-links {
@@ -512,7 +487,7 @@
 
         @media (max-width: 768px) {
             .hero h1 {
-                font-size: 4rem;
+                font-size: 3rem;
             }
             .hero p {
                 font-size: 1rem;
@@ -520,26 +495,17 @@
             .section-title {
                 font-size: 2rem;
             }
-            .pricing-grid, .services-grid {
+            .pricing-grid {
                 grid-template-columns: 1fr;
             }
-            .process-steps {
-                flex-direction: column;
-                align-items: center;
-            }
-            .process-step {
-                margin-bottom: 30px;
-                width: 100%;
-                max-width: none;
-            }
-            .process-steps::before {
-                display: none;
+            .testimonial-grid {
+                grid-template-columns: 1fr;
             }
         }
 
         @media (max-width: 480px) {
             .hero h1 {
-                font-size: 3rem;
+                font-size: 2.5rem;
             }
             .cta-button {
                 width: 100%;
@@ -553,9 +519,9 @@
 </head>
 <body>
     <header>
-        <nav class="container">
+        <div class="container">
             <a href="#" class="logo">InnoWeb Studio</a>
-        </nav>
+        </div>
     </header>
 
     <main>
@@ -588,39 +554,6 @@
                         <div class="service-icon">&#128200;</div>
                         <h3 class="service-title">Performance Optimization</h3>
                         <p>Enhancing website speed and efficiency to deliver seamless user experiences and improve SEO.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="process" class="section">
-            <div class="container">
-                <h2 class="section-title">Our Process</h2>
-                <div class="process-steps">
-                    <div class="process-step">
-                        <div class="process-step-number">01</div>
-                        <h3 class="process-step-title">Discovery</h3>
-                        <p>We start by understanding your business goals and target audience.</p>
-                    </div>
-                    <div class="process-step">
-                        <div class="process-step-number">02</div>
-                        <h3 class="process-step-title">Strategy</h3>
-                        <p>Developing a comprehensive plan tailored to your unique needs and objectives.</p>
-                    </div>
-                    <div class="process-step">
-                        <div class="process-step-number">03</div>
-                        <h3 class="process-step-title">Design</h3>
-                        <p>Creating visually compelling and user-friendly interfaces that align with your brand.</p>
-                    </div>
-                    <div class="process-step">
-                        <div class="process-step-number">04</div>
-                        <h3 class="process-step-title">Development</h3>
-                        <p>Bringing designs to life with clean, efficient, and scalable code.</p>
-                    </div>
-                    <div class="process-step">
-                        <div class="process-step-number">05</div>
-                        <h3 class="process-step-title">Launch & Support</h3>
-                        <p>Deploying your site and providing ongoing maintenance and optimization.</p>
                     </div>
                 </div>
             </div>
@@ -665,6 +598,29 @@
                             <li>Ongoing Support & Maintenance</li>
                         </ul>
                         <a href="#contact" class="cta-button">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <div class="container">
+                <h2 class="section-title">Client Success Stories</h2>
+                <div class="testimonial-grid">
+                    <div class="testimonial-item">
+                        <img src="https://via.placeholder.com/300x200" alt="Project 1" class="testimonial-image">
+                        <p class="testimonial-content">"InnoWeb Studio transformed our online presence. Their innovative design and seamless functionality have significantly boosted our customer engagement."</p>
+                        <p class="testimonial-author">- Sarah Johnson, CEO of TechNova</p>
+                    </div>
+                    <div class="testimonial-item">
+                        <img src="https://via.placeholder.com/300x200" alt="Project 2" class="testimonial-image">
+                        <p class="testimonial-content">"The team at InnoWeb Studio delivered beyond our expectations. Our new website has become a powerful tool for our business growth."</p>
+                        <p class="testimonial-author">- Michael Chen, Founder of GreenEco Solutions</p>
+                    </div>
+                    <div class="testimonial-item">
+                        <img src="https://via.placeholder.com/300x200" alt="Project 3" class="testimonial-image">
+                        <p class="testimonial-content">"Working with InnoWeb Studio was a game-changer for our e-commerce platform. Their expertise in Shopify development is unparalleled."</p>
+                        <p class="testimonial-author">- Emma Rodriguez, Owner of Artisan Delights</p>
                     </div>
                 </div>
             </div>
@@ -750,7 +706,7 @@
         // GSAP Animations
         gsap.registerPlugin(ScrollTrigger);
 
-        gsap.utils.toArray('.service-item, .process-step, .pricing-item').forEach((element) => {
+        gsap.utils.toArray('.service-item, .pricing-item, .testimonial-item').forEach((element) => {
             gsap.from(element, {
                 y: 50,
                 opacity: 0,
