@@ -50,21 +50,23 @@
             background-color: rgba(10, 25, 47, 0.95);
             backdrop-filter: blur(10px);
             transition: var(--transition);
+            padding: 20px 0;
         }
 
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: 700;
             color: var(--accent-color);
             text-decoration: none;
             letter-spacing: 1px;
             transition: var(--transition);
-            padding: 20px 0;
             display: inline-block;
+            text-transform: uppercase;
         }
 
         .logo:hover {
             transform: scale(1.05);
+            text-shadow: 0 0 10px var(--accent-color);
         }
 
         .hero {
@@ -95,19 +97,33 @@
             font-weight: 800;
             line-height: 1.1;
             margin-bottom: 20px;
-            color: var(--heading-color);
-            text-shadow: 0 0 20px rgba(230, 241, 255, 0.5);
-            animation: popIn 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+            color: black;
+            text-shadow: 
+                -1px -1px 0 var(--accent-color),  
+                1px -1px 0 var(--accent-color),
+                -1px 1px 0 var(--accent-color),
+                1px 1px 0 var(--accent-color),
+                0 0 20px var(--accent-color);
+            animation: neonPulse 1.5s infinite alternate;
         }
 
-        @keyframes popIn {
-            0% {
-                opacity: 0;
-                transform: scale(0.8);
+        @keyframes neonPulse {
+            from {
+                text-shadow: 
+                    -1px -1px 0 var(--accent-color),  
+                    1px -1px 0 var(--accent-color),
+                    -1px 1px 0 var(--accent-color),
+                    1px 1px 0 var(--accent-color),
+                    0 0 20px var(--accent-color);
             }
-            100% {
-                opacity: 1;
-                transform: scale(1);
+            to {
+                text-shadow: 
+                    -1px -1px 0 var(--accent-color),  
+                    1px -1px 0 var(--accent-color),
+                    -1px 1px 0 var(--accent-color),
+                    1px 1px 0 var(--accent-color),
+                    0 0 30px var(--accent-color),
+                    0 0 40px var(--accent-color);
             }
         }
 
@@ -168,12 +184,32 @@
             padding: 100px 0;
         }
 
+        .section:nth-child(even) {
+            background-color: var(--primary-color);
+        }
+
+        .section:nth-child(odd) {
+            background-color: var(--secondary-color);
+        }
+
         .section-title {
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: 700;
             margin-bottom: 50px;
             text-align: center;
             color: var(--heading-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background-color: var(--accent-color);
+            margin: 20px auto 0;
         }
 
         .services-grid {
@@ -183,7 +219,7 @@
         }
 
         .service-item {
-            background-color: var(--secondary-color);
+            background-color: rgba(255, 255, 255, 0.05);
             padding: 40px;
             border-radius: 10px;
             transition: var(--transition);
@@ -213,7 +249,7 @@
         }
 
         .service-icon {
-            font-size: 2.5rem;
+            font-size: 3rem;
             color: var(--accent-color);
             margin-bottom: 20px;
         }
@@ -232,7 +268,7 @@
         }
 
         .pricing-item {
-            background-color: var(--secondary-color);
+            background-color: rgba(255, 255, 255, 0.05);
             padding: 40px;
             border-radius: 10px;
             text-align: center;
@@ -273,7 +309,7 @@
         }
 
         .pricing-price {
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: 700;
             margin-bottom: 20px;
             color: var(--accent-color);
@@ -311,10 +347,16 @@
         }
 
         .testimonial-item {
-            background-color: var(--primary-color);
+            background-color: rgba(255, 255, 255, 0.05);
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .testimonial-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
 
         .testimonial-content {
@@ -332,6 +374,11 @@
             height: auto;
             border-radius: 5px;
             margin-bottom: 20px;
+            transition: var(--transition);
+        }
+
+        .testimonial-item:hover .testimonial-image {
+            transform: scale(1.05);
         }
 
         #contact {
@@ -381,7 +428,7 @@
         }
 
         footer {
-            background-color: var(--secondary-color);
+            background-color: var(--primary-color);
             text-align: center;
             padding: 40px 0;
         }
@@ -416,7 +463,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 1.5rem;
+            font-size: 1.5rem
             cursor: pointer;
             opacity: 0;
             visibility: hidden;
@@ -443,19 +490,25 @@
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(0,0,0,0.4);
-            backdrop-filter: blur(5px);
+            background-color: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
         }
 
         .modal-content {
             background-color: var(--secondary-color);
-            margin: 15% auto;
+            margin: 10% auto;
             padding: 40px;
-            border: 1px solid var(--accent-color);
+            border: 2px solid var(--accent-color);
             width: 90%;
             max-width: 500px;
             border-radius: 10px;
-            box-shadow: 0 0 20px rgba(100, 255, 218, 0.2);
+            box-shadow: 0 0 30px rgba(100, 255, 218, 0.3);
+            animation: modalFadeIn 0.5s;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .close {
@@ -464,17 +517,19 @@
             font-size: 28px;
             font-weight: bold;
             cursor: pointer;
+            transition: var(--transition);
         }
 
         .close:hover,
         .close:focus {
             color: var(--heading-color);
             text-decoration: none;
+            transform: rotate(90deg);
         }
 
         #card-element {
             margin-top: 20px;
-            padding: 10px;
+            padding: 15px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 5px;
             background-color: rgba(255, 255, 255, 0.05);
@@ -493,7 +548,7 @@
                 font-size: 1rem;
             }
             .section-title {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
             .pricing-grid {
                 grid-template-columns: 1fr;
@@ -608,17 +663,17 @@
                 <h2 class="section-title">Client Success Stories</h2>
                 <div class="testimonial-grid">
                     <div class="testimonial-item">
-                        <img src="https://via.placeholder.com/300x200" alt="Project 1" class="testimonial-image">
+                        <img src="/api/placeholder/300/200" alt="Project 1" class="testimonial-image">
                         <p class="testimonial-content">"InnoWeb Studio transformed our online presence. Their innovative design and seamless functionality have significantly boosted our customer engagement."</p>
                         <p class="testimonial-author">- Sarah Johnson, CEO of TechNova</p>
                     </div>
                     <div class="testimonial-item">
-                        <img src="https://via.placeholder.com/300x200" alt="Project 2" class="testimonial-image">
+                        <img src="/api/placeholder/300/200" alt="Project 2" class="testimonial-image">
                         <p class="testimonial-content">"The team at InnoWeb Studio delivered beyond our expectations. Our new website has become a powerful tool for our business growth."</p>
                         <p class="testimonial-author">- Michael Chen, Founder of GreenEco Solutions</p>
                     </div>
                     <div class="testimonial-item">
-                        <img src="https://via.placeholder.com/300x200" alt="Project 3" class="testimonial-image">
+                        <img src="/api/placeholder/300/200" alt="Project 3" class="testimonial-image">
                         <p class="testimonial-content">"Working with InnoWeb Studio was a game-changer for our e-commerce platform. Their expertise in Shopify development is unparalleled."</p>
                         <p class="testimonial-author">- Emma Rodriguez, Owner of Artisan Delights</p>
                     </div>
@@ -710,11 +765,11 @@
             gsap.from(element, {
                 y: 50,
                 opacity: 0,
-                duration: 1,
+                duration: 0.6,
                 scrollTrigger: {
                     trigger: element,
                     start: 'top 80%',
-                    end: 'top 20%',
+                    end: 'top 50%',
                     scrub: 1,
                 }
             });
