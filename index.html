@@ -7,17 +7,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
     <script src="https://js.stripe.com/v3/"></script>
     <style>
         :root {
-            --primary-color: #0a192f;
-            --secondary-color: #112240;
-            --accent-color: #64ffda;
-            --text-color: #8892b0;
-            --heading-color: #e6f1ff;
+            --primary-color: #1a1a2e;
+            --secondary-color: #16213e;
+            --accent-color: #0f3460;
+            --text-color: #e94560;
+            --heading-color: #ffffff;
             --transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
         }
 
@@ -47,7 +46,7 @@
             top: 0;
             left: 0;
             z-index: 1000;
-            background-color: rgba(10, 25, 47, 0.95);
+            background-color: rgba(26, 26, 46, 0.95);
             backdrop-filter: blur(10px);
             transition: var(--transition);
             padding: 20px 0;
@@ -56,7 +55,7 @@
         .logo {
             font-size: 1.8rem;
             font-weight: 700;
-            color: var(--accent-color);
+            color: var(--heading-color);
             text-decoration: none;
             letter-spacing: 1px;
             transition: var(--transition);
@@ -65,8 +64,7 @@
         }
 
         .logo:hover {
-            transform: scale(1.05);
-            text-shadow: 0 0 10px var(--accent-color);
+            color: var(--text-color);
         }
 
         .hero {
@@ -75,15 +73,18 @@
             align-items: center;
             position: relative;
             overflow: hidden;
-            background: var(--primary-color);
+            background: url('https://black-forest-labs-flux-1-schnell.hf.space/file=/tmp/gradio/2e9cd08a8a013f7655d26bd156712367bffcb519/image.webp') no-repeat center center;
+            background-size: cover;
         }
 
-        #hero-canvas {
+        .hero::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            right: 0;
+            bottom: 0;
+            background: rgba(26, 26, 46, 0.7);
         }
 
         .hero-content {
@@ -93,58 +94,24 @@
         }
 
         .hero h1 {
-            font-size: 5rem;
+            font-size: 4rem;
             font-weight: 800;
             line-height: 1.1;
             margin-bottom: 20px;
-            color: black;
-            text-shadow: 
-                -1px -1px 0 var(--accent-color),  
-                1px -1px 0 var(--accent-color),
-                -1px 1px 0 var(--accent-color),
-                1px 1px 0 var(--accent-color),
-                0 0 20px var(--accent-color);
-            animation: neonPulse 1.5s infinite alternate;
-        }
-
-        @keyframes neonPulse {
-            from {
-                text-shadow: 
-                    -1px -1px 0 var(--accent-color),  
-                    1px -1px 0 var(--accent-color),
-                    -1px 1px 0 var(--accent-color),
-                    1px 1px 0 var(--accent-color),
-                    0 0 20px var(--accent-color);
-            }
-            to {
-                text-shadow: 
-                    -1px -1px 0 var(--accent-color),  
-                    1px -1px 0 var(--accent-color),
-                    -1px 1px 0 var(--accent-color),
-                    1px 1px 0 var(--accent-color),
-                    0 0 30px var(--accent-color),
-                    0 0 40px var(--accent-color);
-            }
+            color: var(--heading-color);
         }
 
         .hero p {
             font-size: 1.2rem;
             margin-bottom: 40px;
             max-width: 600px;
-            color: var(--heading-color);
-            text-shadow: 0 0 10px rgba(230, 241, 255, 0.3);
-            animation: fadeIn 1s ease-out 0.5s both;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            color: var(--text-color);
         }
 
         .cta-button {
             display: inline-block;
-            background-color: transparent;
-            color: var(--accent-color);
+            background-color: var(--text-color);
+            color: var(--primary-color);
             padding: 12px 30px;
             text-decoration: none;
             font-size: 1rem;
@@ -152,32 +119,13 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             transition: var(--transition);
-            border: 2px solid var(--accent-color);
+            border: 2px solid var(--text-color);
             cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-            animation: fadeIn 1s ease-out 1s both;
-        }
-
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background-color: var(--accent-color);
-            transition: var(--transition);
-            z-index: -1;
         }
 
         .cta-button:hover {
-            color: var(--primary-color);
-        }
-
-        .cta-button:hover::before {
-            left: 0;
+            background-color: transparent;
+            color: var(--text-color);
         }
 
         .section {
@@ -185,10 +133,6 @@
         }
 
         .section:nth-child(even) {
-            background-color: var(--primary-color);
-        }
-
-        .section:nth-child(odd) {
             background-color: var(--secondary-color);
         }
 
@@ -208,7 +152,7 @@
             display: block;
             width: 100px;
             height: 4px;
-            background-color: var(--accent-color);
+            background-color: var(--text-color);
             margin: 20px auto 0;
         }
 
@@ -219,28 +163,11 @@
         }
 
         .service-item {
-            background-color: rgba(255, 255, 255, 0.05);
+            background-color: var(--primary-color);
             padding: 40px;
             border-radius: 10px;
             transition: var(--transition);
-            position: relative;
-            overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .service-item::before {
-            content: '';
-            position: absolute;
-            top: -100%;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(100, 255, 218, 0.1) 0%, rgba(0, 0, 0, 0) 100%);
-            transition: var(--transition);
-        }
-
-        .service-item:hover::before {
-            top: 0;
         }
 
         .service-item:hover {
@@ -250,7 +177,7 @@
 
         .service-icon {
             font-size: 3rem;
-            color: var(--accent-color);
+            color: var(--text-color);
             margin-bottom: 20px;
         }
 
@@ -268,32 +195,15 @@
         }
 
         .pricing-item {
-            background-color: rgba(255, 255, 255, 0.05);
+            background-color: var(--primary-color);
             padding: 40px;
             border-radius: 10px;
             text-align: center;
             transition: var(--transition);
-            position: relative;
-            overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             display: flex;
             flex-direction: column;
             height: 100%;
-        }
-
-        .pricing-item::before {
-            content: '';
-            position: absolute;
-            top: -100%;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(100, 255, 218, 0.1) 0%, rgba(0, 0, 0, 0) 100%);
-            transition: var(--transition);
-        }
-
-        .pricing-item:hover::before {
-            top: 0;
         }
 
         .pricing-item:hover {
@@ -312,7 +222,7 @@
             font-size: 3rem;
             font-weight: 700;
             margin-bottom: 20px;
-            color: var(--accent-color);
+            color: var(--text-color);
         }
 
         .pricing-features {
@@ -332,7 +242,7 @@
             content: '✓';
             position: absolute;
             left: 0;
-            color: var(--accent-color);
+            color: var(--text-color);
         }
 
         .testimonials {
@@ -347,7 +257,7 @@
         }
 
         .testimonial-item {
-            background-color: rgba(255, 255, 255, 0.05);
+            background-color: var(--primary-color);
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -366,7 +276,7 @@
 
         .testimonial-author {
             font-weight: 600;
-            color: var(--accent-color);
+            color: var(--text-color);
         }
 
         .testimonial-image {
@@ -407,8 +317,8 @@
         .form-group textarea {
             width: 100%;
             padding: 10px;
-            background-color: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: var(--primary-color);
+            border: 1px solid var(--text-color);
             color: var(--heading-color);
             font-family: 'Poppins', sans-serif;
             font-size: 1rem;
@@ -420,7 +330,7 @@
         .form-group textarea:focus {
             outline: none;
             border-color: var(--accent-color);
-            box-shadow: 0 0 10px rgba(100, 255, 218, 0.2);
+            box-shadow: 0 0 10px rgba(233, 69, 96, 0.2);
         }
 
         .form-group textarea {
@@ -447,7 +357,7 @@
         }
 
         .social-links a:hover {
-            color: var(--accent-color);
+            color: var(--text-color);
             transform: translateY(-5px);
         }
 
@@ -455,7 +365,7 @@
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background-color: var(--accent-color);
+            background-color: var(--text-color);
             color: var(--primary-color);
             width: 50px;
             height: 50px;
@@ -463,7 +373,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 1.5rem
+            font-size: 1.5rem;
             cursor: pointer;
             opacity: 0;
             visibility: hidden;
@@ -490,7 +400,7 @@
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(0,0,0,0.8);
+            background-color: rgba(26, 26, 46, 0.8);
             backdrop-filter: blur(10px);
         }
 
@@ -498,11 +408,11 @@
             background-color: var(--secondary-color);
             margin: 10% auto;
             padding: 40px;
-            border: 2px solid var(--accent-color);
+            border: 2px solid var(--text-color);
             width: 90%;
             max-width: 500px;
             border-radius: 10px;
-            box-shadow: 0 0 30px rgba(100, 255, 218, 0.3);
+            box-shadow: 0 0 30px rgba(233, 69, 96, 0.3);
             animation: modalFadeIn 0.5s;
         }
 
@@ -512,7 +422,7 @@
         }
 
         .close {
-            color: var(--accent-color);
+            color: var(--text-color);
             float: right;
             font-size: 28px;
             font-weight: bold;
@@ -530,9 +440,9 @@
         #card-element {
             margin-top: 20px;
             padding: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--text-color);
             border-radius: 5px;
-            background-color: rgba(255, 255, 255, 0.05);
+            background-color: var(--primary-color);
         }
 
         #card-errors {
@@ -581,10 +491,9 @@
 
     <main>
         <section class="hero">
-            <canvas id="hero-canvas"></canvas>
             <div class="container">
                 <div class="hero-content">
-                    <h1>Elevating<br>Digital Experiences</h1>
+                    <h1>Elevating Digital Experiences</h1>
                     <p>We craft cutting-edge websites that blend innovative design with powerful functionality, driving your business forward in the digital age.</p>
                     <a href="#contact" class="cta-button">Start Your Journey</a>
                 </div>
@@ -833,15 +742,6 @@
             alert('Thank you for your message. We will get back to you soon!');
             contactForm.reset();
         });
-
-        // Resize event listener for responsive canvas
-        window.addEventListener('resize', onWindowResize, false);
-
-        function onWindowResize() {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        }
     </script>
 </body>
 </html>
