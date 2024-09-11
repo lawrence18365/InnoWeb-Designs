@@ -510,6 +510,72 @@
             transform: translateY(-5px);
         }
 
+        .portfolio-section {
+            padding: 120px 0;
+            background-color: var(--secondary-color);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .portfolio-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-item:hover .portfolio-image {
+            transform: scale(1.1);
+        }
+
+        .portfolio-title {
+            color: var(--heading-color);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .portfolio-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .portfolio-link:hover {
+            color: var(--heading-color);
+        }
+
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 3.5rem;
@@ -522,7 +588,8 @@
             }
             .feature-grid,
             .services-grid,
-            .testimonial-grid {
+            .testimonial-grid,
+            .portfolio-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -549,6 +616,7 @@
                 <div class="nav-links">
                     <a href="#features">Features</a>
                     <a href="#services">Services</a>
+                    <a href="#portfolio">Portfolio</a>
                     <a href="#testimonials">Testimonials</a>
                     <a href="#contact">Contact</a>
                 </div>
@@ -609,6 +677,35 @@
                         <div class="service-icon">&#127912;</div>
                         <h3 class="service-title">Brand Identity</h3>
                         <p>Developing cohesive visual identities and stunning graphics that tell your brand's story and resonate with your target audience across all digital touchpoints.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio" class="portfolio-section">
+            <div class="container">
+                <h2 class="section-title">Portfolio</h2>
+                <div class="portfolio-grid">
+                    <div class="portfolio-item">
+                        <img src="/placeholder.svg?height=250&width=300" alt="GMZ Painting" class="portfolio-image">
+                        <div class="portfolio-overlay">
+                            <h3 class="portfolio-title">GMZ Painting</h3>
+                            <a href="#" class="portfolio-link">View Project</a>
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="/placeholder.svg?height=250&width=300" alt="Golden Slipper Cleaning" class="portfolio-image">
+                        <div class="portfolio-overlay">
+                            <h3 class="portfolio-title">Golden Slipper Cleaning</h3>
+                            <a href="#" class="portfolio-link">View Project</a>
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="/placeholder.svg?height=250&width=300" alt="Dr. H2O Plumbing" class="portfolio-image">
+                        <div class="portfolio-overlay">
+                            <h3 class="portfolio-title">Dr. H2O Plumbing</h3>
+                            <a href="#" class="portfolio-link">View Project</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -715,17 +812,18 @@
             ease: 'power3.out'
         });
 
-        gsap.utils.toArray('.feature-item, .service-item, .testimonial-item').forEach((element) => {
+        gsap.utils.toArray('.feature-item, .service-item, .testimonial-item, .portfolio-item').forEach((element) => {
             gsap.from(element, {
                 scrollTrigger: {
                     trigger: element,
-                    start: 'top 80%',
-                    end: 'top 50%',
-                    toggleActions: 'play none none reverse'
+                    start: 'top bottom',
+                    end: 'top center',
+                    toggleActions: 'play none none reverse',
+                    once: true
                 },
                 opacity: 0,
                 y: 50,
-                duration: 1,
+                duration: 0.8,
                 ease: 'power3.out'
             });
         });
