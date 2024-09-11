@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>InnoWeb Studio | Cutting-Edge Digital Experiences</title>
+    <title>InnoWeb Studio | Revolutionary Digital Experiences</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
         :root {
-            --primary-color: #0a192f;
-            --secondary-color: #112240;
-            --accent-color: #64ffda;
-            --text-color: #8892b0;
-            --heading-color: #ccd6f6;
+            --primary-color: #000000;
+            --secondary-color: #0a0a0a;
+            --accent-color: #00ffff;
+            --text-color: #ffffff;
+            --heading-color: #ffffff;
             --transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
         }
 
@@ -26,12 +27,12 @@
         }
 
         body {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Roboto', sans-serif;
             line-height: 1.6;
             color: var(--text-color);
             background-color: var(--primary-color);
             overflow-x: hidden;
-            font-size: 18px;
+            font-size: 16px;
         }
 
         .container {
@@ -46,7 +47,7 @@
             top: 0;
             left: 0;
             z-index: 1000;
-            background-color: rgba(10, 25, 47, 0.85);
+            background-color: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(10px);
             transition: var(--transition);
             padding: 20px 0;
@@ -59,16 +60,17 @@
         }
 
         .logo {
+            font-family: 'Orbitron', sans-serif;
             font-size: 2.5rem;
-            font-weight: 800;
+            font-weight: 900;
             color: var(--accent-color);
             text-decoration: none;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             transition: var(--transition);
         }
 
         .logo:hover {
-            transform: scale(1.05);
+            text-shadow: 0 0 15px var(--accent-color);
         }
 
         .nav-links {
@@ -80,24 +82,28 @@
             color: var(--heading-color);
             text-decoration: none;
             font-size: 1.1rem;
-            font-weight: 600;
+            font-weight: 500;
             transition: var(--transition);
             position: relative;
+            padding: 5px 0;
         }
 
-        .nav-links a::after {
+        .nav-links a::before {
             content: '';
             position: absolute;
-            width: 0;
+            width: 100%;
             height: 2px;
-            bottom: -5px;
+            bottom: 0;
             left: 0;
             background-color: var(--accent-color);
-            transition: var(--transition);
+            visibility: hidden;
+            transform: scaleX(0);
+            transition: all 0.3s ease-in-out 0s;
         }
 
-        .nav-links a:hover::after {
-            width: 100%;
+        .nav-links a:hover::before {
+            visibility: visible;
+            transform: scaleX(1);
         }
 
         .hero {
@@ -108,6 +114,15 @@
             overflow: hidden;
         }
 
+        #hero-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
         .hero-content {
             position: relative;
             z-index: 1;
@@ -115,12 +130,52 @@
         }
 
         .hero h1 {
-            font-size: 6rem;
-            font-weight: 800;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 5rem;
+            font-weight: 900;
             line-height: 1.1;
             margin-bottom: 30px;
             color: var(--heading-color);
-            animation: fadeInUp 1s ease-out;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            animation: glitchText 5s infinite;
+        }
+
+        @keyframes glitchText {
+            0% {
+                text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
+                            -0.05em -0.025em 0 rgba(0, 255, 0, 0.75),
+                            -0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+            }
+            14% {
+                text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
+                            -0.05em -0.025em 0 rgba(0, 255, 0, 0.75),
+                            -0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+            }
+            15% {
+                text-shadow: -0.05em -0.025em 0 rgba(255, 0, 0, 0.75),
+                            0.025em 0.025em 0 rgba(0, 255, 0, 0.75),
+                            -0.05em -0.05em 0 rgba(0, 0, 255, 0.75);
+            }
+            49% {
+                text-shadow: -0.05em -0.025em 0 rgba(255, 0, 0, 0.75),
+                            0.025em 0.025em 0 rgba(0, 255, 0, 0.75),
+                            -0.05em -0.05em 0 rgba(0, 0, 255, 0.75);
+            }
+            50% {
+                text-shadow: 0.025em 0.05em 0 rgba(255, 0, 0, 0.75),
+                            0.05em 0 0 rgba(0, 255, 0, 0.75),
+                            0 -0.05em 0 rgba(0, 0, 255, 0.75);
+            }
+            99% {
+                text-shadow: 0.025em 0.05em 0 rgba(255, 0, 0, 0.75),
+                            0.05em 0 0 rgba(0, 255, 0, 0.75),
+                            0 -0.05em 0 rgba(0, 0, 255, 0.75);
+            }
+            100% {
+                text-shadow: -0.025em 0 0 rgba(255, 0, 0, 0.75),
+                            -0.025em -0.025em 0 rgba(0, 255, 0, 0.75),
+                            -0.025em -0.05em 0 rgba(0, 0, 255, 0.75);
+            }
         }
 
         .hero p {
@@ -128,8 +183,7 @@
             margin-bottom: 50px;
             max-width: 600px;
             color: var(--text-color);
-            animation: fadeInUp 1s ease-out 0.2s;
-            animation-fill-mode: both;
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
         }
 
         .cta-button {
@@ -139,16 +193,15 @@
             padding: 15px 40px;
             text-decoration: none;
             font-size: 1.2rem;
-            font-weight: 600;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             transition: var(--transition);
             border: 2px solid var(--accent-color);
             cursor: pointer;
             position: relative;
             overflow: hidden;
-            animation: fadeInUp 1s ease-out 0.4s;
-            animation-fill-mode: both;
+            z-index: 1;
         }
 
         .cta-button::before {
@@ -173,20 +226,30 @@
 
         .section {
             padding: 120px 0;
+            position: relative;
+            overflow: hidden;
         }
 
-        .section:nth-child(even) {
-            background-color: var(--secondary-color);
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(0, 255, 255, 0.1) 0%, rgba(0, 255, 255, 0) 100%);
+            z-index: -1;
         }
 
         .section-title {
-            font-size: 4rem;
-            font-weight: 800;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 900;
             margin-bottom: 60px;
             text-align: center;
             color: var(--heading-color);
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             position: relative;
         }
 
@@ -213,6 +276,7 @@
             background-color: rgba(255, 255, 255, 0.05);
             position: relative;
             overflow: hidden;
+            backdrop-filter: blur(10px);
         }
 
         .feature-item::before {
@@ -222,8 +286,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: var(--accent-color);
-            opacity: 0.1;
+            background: linear-gradient(45deg, rgba(0, 255, 255, 0.2) 0%, rgba(0, 255, 255, 0) 100%);
             transition: var(--transition);
         }
 
@@ -239,12 +302,13 @@
         }
 
         .feature-item:hover .feature-icon {
-            transform: scale(1.1);
+            transform: scale(1.1) rotate(10deg);
         }
 
         .feature-title {
+            font-family: 'Orbitron', sans-serif;
             font-size: 1.8rem;
-            font-weight: 600;
+            font-weight: 700;
             margin-bottom: 15px;
             color: var(--heading-color);
         }
@@ -262,6 +326,7 @@
             transition: var(--transition);
             position: relative;
             overflow: hidden;
+            backdrop-filter: blur(10px);
         }
 
         .service-item::after {
@@ -289,40 +354,29 @@
         }
 
         .service-title {
+            font-family: 'Orbitron', sans-serif;
             font-size: 2rem;
-            font-weight: 600;
+            font-weight: 700;
             margin-bottom: 15px;
             color: var(--heading-color);
-        }
-
-        .benefits-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            list-style-type: none;
-        }
-
-        .benefit-item {
-            display: flex;
-            align-items: center;
-            font-size: 1.2rem;
-            color: var(--heading-color);
-            transition: var(--transition);
-        }
-
-        .benefit-item:hover {
-            transform: translateX(10px);
-        }
-
-        .benefit-icon {
-            margin-right: 15px;
-            font-size: 1.5rem;
-            color: var(--accent-color);
         }
 
         .testimonials {
             background-color: var(--secondary-color);
             padding: 120px 0;
+            position: relative;
+        }
+
+        .testimonials::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjMjIyIj48L3JlY3Q+CjxwYXRoIGQ9Ik0wIDVMNSAwWk02IDRMNCA2Wk0tMSAxTDEgLTFaIiBzdHJva2U9IiMzMzMiIHN0cm9rZS13aWR0aD0iMSI+PC9wYXRoPgo8L3N2Zz4=');
+            opacity: 0.1;
+            z-index: 0;
         }
 
         .testimonial-grid {
@@ -337,6 +391,7 @@
             border-radius: 10px;
             transition: var(--transition);
             position: relative;
+            backdrop-filter: blur(10px);
         }
 
         .testimonial-item::before {
@@ -359,7 +414,7 @@
         }
 
         .testimonial-author {
-            font-weight: 600;
+            font-weight: 700;
             color: var(--accent-color);
             font-size: 1.2rem;
         }
@@ -371,11 +426,26 @@
 
         #contact {
             background-color: var(--secondary-color);
+            position: relative;
+        }
+
+        #contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjMjIyIj48L3JlY3Q+CjxwYXRoIGQ9Ik0wIDVMNSAwWk02IDRMNCA2Wk0tMSAxTDEgLTFaIiBzdHJva2U9IiMzMzMiIHN0cm9rZS13aWR0aD0iMSI+PC9wYXRoPgo8L3N2Zz4=');
+            opacity: 0.1;
+            z-index: 0;
         }
 
         .contact-form {
             max-width: 700px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         .form-group {
@@ -398,7 +468,7 @@
             background-color: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--accent-color);
             color: var(--heading-color);
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Roboto', sans-serif;
             font-size: 1.1rem;
             transition: var(--transition);
             border-radius: 5px;
@@ -408,7 +478,7 @@
         .form-group textarea:focus {
             outline: none;
             border-color: var(--heading-color);
-            box-shadow: 0 0 10px rgba(100, 255, 218, 0.2);
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
         }
 
         .form-group textarea {
@@ -419,6 +489,7 @@
             background-color: var(--primary-color);
             text-align: center;
             padding: 60px 0;
+            position: relative;
         }
 
         .social-links {
@@ -439,26 +510,15 @@
             transform: translateY(-5px);
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
         @media (max-width: 768px) {
             .hero h1 {
-                font-size: 4rem;
+                font-size: 3.5rem;
             }
             .hero p {
                 font-size: 1.2rem;
             }
             .section-title {
-                font-size: 3rem;
+                font-size: 2.5rem;
             }
             .feature-grid,
             .services-grid,
@@ -469,7 +529,7 @@
 
         @media (max-width: 480px) {
             .hero h1 {
-                font-size: 3rem;
+                font-size: 2.5rem;
             }
             .cta-button {
                 width: 100%;
@@ -498,9 +558,10 @@
 
     <main>
         <section class="hero">
+            <canvas id="hero-canvas"></canvas>
             <div class="container">
                 <div class="hero-content">
-                    <h1>Elevate Your Digital Presence</h1>
+                    <h1>Revolutionize Your Digital Presence</h1>
                     <p>We craft cutting-edge websites that blend innovative design with powerful functionality, propelling your business into the future of the digital landscape.</p>
                     <a href="#contact" class="cta-button">Embark on Your Journey</a>
                 </div>
@@ -612,23 +673,64 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
     <script>
+        // Three.js background animation
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('hero-canvas'), alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+
+        const geometry = new THREE.BufferGeometry();
+        const vertices = [];
+        for (let i = 0; i < 10000; i++) {
+            vertices.push(THREE.MathUtils.randFloatSpread(2000));
+            vertices.push(THREE.MathUtils.randFloatSpread(2000));
+            vertices.push(THREE.MathUtils.randFloatSpread(2000));
+        }
+        geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+        const particles = new THREE.Points(geometry, new THREE.PointsMaterial({ color: 0x00ffff, size: 2 }));
+        scene.add(particles);
+        camera.position.z = 1000;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            particles.rotation.x += 0.0005;
+            particles.rotation.y += 0.0005;
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // GSAP animations
         gsap.registerPlugin(ScrollTrigger);
+
+        gsap.from('.hero-content', {
+            opacity: 0,
+            y: 50,
+            duration: 1,
+            ease: 'power3.out'
+        });
 
         gsap.utils.toArray('.feature-item, .service-item, .testimonial-item').forEach((element) => {
             gsap.from(element, {
-                y: 50,
-                opacity: 0,
-                duration: 1,
-                ease: "power3.out",
                 scrollTrigger: {
                     trigger: element,
                     start: 'top 80%',
                     end: 'top 50%',
                     toggleActions: 'play none none reverse'
-                }
+                },
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                ease: 'power3.out'
             });
         });
 
+        // Smooth scroll for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -638,20 +740,12 @@
             });
         });
 
+        // Form submission
         const contactForm = document.querySelector('.contact-form');
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
             alert('Thank you for your message. We will get back to you soon!');
             contactForm.reset();
-        });
-
-        const heroContent = document.querySelector('.hero-content');
-        gsap.from(heroContent.children, {
-            opacity: 0,
-            y: 50,
-            duration: 1,
-            stagger: 0.2,
-            ease: "power3.out"
         });
     </script>
 </body>
