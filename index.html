@@ -734,117 +734,91 @@
             </div>
         </section>
 
-        <section id="contact" class="section">
-            <div class="container">
-                <h2 class="section-title">Let's Create Together</h2>
-                <form class="contact-form">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Your Vision</label>
-                        <textarea id="message" name="message" required></textarea>
-                    </div>
-                    <button type="submit" class="cta-button">Initiate Your Project</button>
-                </form>
+       <section id="contact" class="section">
+    <div class="container">
+        <h2 class="section-title">Let's Create Together</h2>
+        <form class="contact-form" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
             </div>
-        </section>
-    </main>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Your Vision</label>
+                <textarea id="message" name="message" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="file">Upload Image</label>
+                <input type="file" id="file" name="file" accept="image/*" required>
+            </div>
+            <button type="submit" class="cta-button">Initiate Your Project</button>
+        </form>
+    </div>
+</section>
 
-    <footer>
-        <div class="container">
-            <div class="social-links">
-                <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            </div>
-            <p>&copy; 2023 InnoWeb Studio. Crafting Digital Excellence.</p>
+<footer>
+    <div class="container">
+        <div class="social-links">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
         </div>
-    </footer>
+        <p>&copy; 2023 InnoWeb Studio. Crafting Digital Excellence.</p>
+    </div>
+</footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
-    <script>
-        // Three.js background animation
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('hero-canvas'), alpha: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+<script>
+    // Form submission with file encoding and webhook
+    const contactForm = document.querySelector('.contact-form');
 
-        const geometry = new THREE.BufferGeometry();
-        const vertices = [];
-        for (let i = 0; i < 10000; i++) {
-            vertices.push(THREE.MathUtils.randFloatSpread(2000));
-            vertices.push(THREE.MathUtils.randFloatSpread(2000));
-            vertices.push(THREE.MathUtils.randFloatSpread(2000));
-        }
-        geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
-        const particles = new THREE.Points(geometry, new THREE.PointsMaterial({ color: 0x00ffff, size: 2 }));
-        scene.add(particles);
-        camera.position.z = 1000;
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
 
-        function animate() {
-            requestAnimationFrame(animate);
-            particles.rotation.x += 0.0005;
-            particles.rotation.y += 0.0005;
-            renderer.render(scene, camera);
-        }
-        animate();
+        // Collect form data
+        const formData = new FormData(contactForm);
+        const file = formData.get('file');
 
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
+        if (file) {
+            // Convert file to hexadecimal string
+            const fileName = file.name;
+            const fileData = await file.arrayBuffer();
+            const hexString = [...new Uint8Array(fileData)].map(byte => byte.toString(16).padStart(2, '0')).join('');
 
-        // GSAP animations
-        gsap.registerPlugin(ScrollTrigger);
+            // Prepare data to send via webhook
+            const payload = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                message: formData.get('message'),
+                file: {
+                    name: fileName,
+                    data: hexString
+                }
+            };
 
-        gsap.from('.hero-content', {
-            opacity: 0,
-            y: 50,
-            duration: 1,
-            ease: 'power3.out'
-        });
-
-        gsap.utils.toArray('.feature-item, .service-item, .testimonial-item, .portfolio-item').forEach((element) => {
-            gsap.from(element, {
-                scrollTrigger: {
-                    trigger: element,
-                    start: 'top bottom',
-                    end: 'top center',
-                    toggleActions: 'play none none reverse',
-                    once: true
+            // Send data via webhook
+            fetch('https://hook.eu2.make.com/6j427hxnmbcnn5dy7oyxchmtilc0qo0n', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
                 },
-                opacity: 0,
-                y: 50,
-                duration: 0.8,
-                ease: 'power3.out'
+                body: JSON.stringify(payload)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Thank you for your message. We will get back to you soon!');
+                contactForm.reset();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
             });
-        });
-
-        // Smooth scroll for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Form submission
-        const contactForm = document.querySelector('.contact-form');
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Thank you for your message. We will get back to you soon!');
-            contactForm.reset();
-        });
-    </script>
+        }
+    });
+</script>
 </body>
 </html>
