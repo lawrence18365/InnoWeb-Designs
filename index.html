@@ -11,11 +11,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
     <style>
         :root {
-            --primary-color: #1a1a2e;
-            --secondary-color: #16213e;
-            --accent-color: #0f3460;
-            --text-color: #4a4e69;
-            --heading-color: #ffffff;
+            --primary-color: #0a192f;
+            --secondary-color: #112240;
+            --accent-color: #64ffda;
+            --text-color: #8892b0;
+            --heading-color: #ccd6f6;
             --transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
         }
 
@@ -46,7 +46,7 @@
             top: 0;
             left: 0;
             z-index: 1000;
-            background-color: rgba(26, 26, 46, 0.95);
+            background-color: rgba(10, 25, 47, 0.85);
             backdrop-filter: blur(10px);
             transition: var(--transition);
             padding: 20px 0;
@@ -59,16 +59,16 @@
         }
 
         .logo {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: var(--heading-color);
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent-color);
             text-decoration: none;
             letter-spacing: 1px;
             transition: var(--transition);
         }
 
         .logo:hover {
-            color: var(--accent-color);
+            transform: scale(1.05);
         }
 
         .nav-links {
@@ -82,10 +82,22 @@
             font-size: 1.1rem;
             font-weight: 600;
             transition: var(--transition);
+            position: relative;
         }
 
-        .nav-links a:hover {
-            color: var(--accent-color);
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         .hero {
@@ -94,18 +106,6 @@
             align-items: center;
             position: relative;
             overflow: hidden;
-            background: url('https://source.unsplash.com/random/1920x1080?web,design') no-repeat center center;
-            background-size: cover;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(26, 26, 46, 0.7);
         }
 
         .hero-content {
@@ -115,24 +115,27 @@
         }
 
         .hero h1 {
-            font-size: 5rem;
+            font-size: 6rem;
             font-weight: 800;
             line-height: 1.1;
             margin-bottom: 30px;
             color: var(--heading-color);
+            animation: fadeInUp 1s ease-out;
         }
 
         .hero p {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             margin-bottom: 50px;
             max-width: 600px;
-            color: var(--heading-color);
+            color: var(--text-color);
+            animation: fadeInUp 1s ease-out 0.2s;
+            animation-fill-mode: both;
         }
 
         .cta-button {
             display: inline-block;
-            background-color: var(--accent-color);
-            color: var(--heading-color);
+            background-color: transparent;
+            color: var(--accent-color);
             padding: 15px 40px;
             text-decoration: none;
             font-size: 1.2rem;
@@ -142,11 +145,30 @@
             transition: var(--transition);
             border: 2px solid var(--accent-color);
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 1s ease-out 0.4s;
+            animation-fill-mode: both;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background-color: var(--accent-color);
+            transition: var(--transition);
+            z-index: -1;
         }
 
         .cta-button:hover {
-            background-color: transparent;
-            color: var(--accent-color);
+            color: var(--primary-color);
+        }
+
+        .cta-button:hover::before {
+            left: 0;
         }
 
         .section {
@@ -158,8 +180,8 @@
         }
 
         .section-title {
-            font-size: 3.5rem;
-            font-weight: 700;
+            font-size: 4rem;
+            font-weight: 800;
             margin-bottom: 60px;
             text-align: center;
             color: var(--heading-color);
@@ -189,12 +211,35 @@
             border-radius: 10px;
             transition: var(--transition);
             background-color: rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-item::before {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--accent-color);
+            opacity: 0.1;
+            transition: var(--transition);
+        }
+
+        .feature-item:hover::before {
+            top: 0;
         }
 
         .feature-icon {
             font-size: 4rem;
             color: var(--accent-color);
             margin-bottom: 20px;
+            transition: var(--transition);
+        }
+
+        .feature-item:hover .feature-icon {
+            transform: scale(1.1);
         }
 
         .feature-title {
@@ -215,6 +260,26 @@
             padding: 40px;
             border-radius: 10px;
             transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--accent-color);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease-out;
+        }
+
+        .service-item:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
         }
 
         .service-icon {
@@ -242,6 +307,11 @@
             align-items: center;
             font-size: 1.2rem;
             color: var(--heading-color);
+            transition: var(--transition);
+        }
+
+        .benefit-item:hover {
+            transform: translateX(10px);
         }
 
         .benefit-icon {
@@ -266,6 +336,17 @@
             padding: 40px;
             border-radius: 10px;
             transition: var(--transition);
+            position: relative;
+        }
+
+        .testimonial-item::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 5rem;
+            color: var(--accent-color);
+            opacity: 0.2;
         }
 
         .testimonial-content {
@@ -273,6 +354,8 @@
             margin-bottom: 20px;
             font-size: 1.1rem;
             color: var(--heading-color);
+            position: relative;
+            z-index: 1;
         }
 
         .testimonial-author {
@@ -325,36 +408,11 @@
         .form-group textarea:focus {
             outline: none;
             border-color: var(--heading-color);
-            box-shadow: 0 0 10px rgba(15, 52, 96, 0.2);
+            box-shadow: 0 0 10px rgba(100, 255, 218, 0.2);
         }
 
         .form-group textarea {
             height: 200px;
-        }
-
-        .faq-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 50px;
-        }
-
-        .faq-item {
-            background-color: rgba(255, 255, 255, 0.05);
-            padding: 30px;
-            border-radius: 10px;
-            transition: var(--transition);
-        }
-
-        .faq-question {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-            color: var(--heading-color);
-        }
-
-        .faq-answer {
-            font-size: 1.1rem;
-            color: var(--text-color);
         }
 
         footer {
@@ -381,9 +439,20 @@
             transform: translateY(-5px);
         }
 
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         @media (max-width: 768px) {
             .hero h1 {
-                font-size: 3.5rem;
+                font-size: 4rem;
             }
             .hero p {
                 font-size: 1.2rem;
@@ -393,8 +462,7 @@
             }
             .feature-grid,
             .services-grid,
-            .testimonial-grid,
-            .faq-grid {
+            .testimonial-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -417,7 +485,7 @@
     <header>
         <div class="container">
             <nav class="navbar">
-                <a href="#" class="logo">InnoWeb Studio</a>
+                <a href="#" class="logo">InnoWeb</a>
                 <div class="nav-links">
                     <a href="#features">Features</a>
                     <a href="#services">Services</a>
@@ -432,9 +500,9 @@
         <section class="hero">
             <div class="container">
                 <div class="hero-content">
-                    <h1>Elevating Digital Experiences</h1>
-                    <p>We craft cutting-edge websites that blend innovative design with powerful functionality, driving your business forward in the digital age.</p>
-                    <a href="#contact" class="cta-button">Start Your Journey</a>
+                    <h1>Elevate Your Digital Presence</h1>
+                    <p>We craft cutting-edge websites that blend innovative design with powerful functionality, propelling your business into the future of the digital landscape.</p>
+                    <a href="#contact" class="cta-button">Embark on Your Journey</a>
                 </div>
             </div>
         </section>
@@ -446,17 +514,17 @@
                     <div class="feature-item">
                         <div class="feature-icon">&#128161;</div>
                         <h3 class="feature-title">Innovative Design</h3>
-                        <p>We create visually stunning and user-centric interfaces that captivate and engage your audience.</p>
+                        <p>We create visually stunning and user-centric interfaces that captivate and engage your audience, leaving a lasting impression.</p>
                     </div>
                     <div class="feature-item">
                         <div class="feature-icon">&#128187;</div>
-                        <h3 class="feature-title">Advanced Technology</h3>
-                        <p>Leveraging cutting-edge technologies to build robust and scalable web solutions.</p>
+                        <h3 class="feature-title">Cutting-Edge Technology</h3>
+                        <p>Leveraging the latest technologies to build robust, scalable, and future-proof web solutions that stand the test of time.</p>
                     </div>
                     <div class="feature-item">
                         <div class="feature-icon">&#128202;</div>
-                        <h3 class="feature-title">Data-Driven Insights</h3>
-                        <p>Utilizing analytics and user behavior data to continuously improve and optimize your digital presence.</p>
+                        <h3 class="feature-title">Data-Driven Strategy</h3>
+                        <p>Harnessing the power of analytics and user behavior data to continuously refine and optimize your digital presence for maximum impact.</p>
                     </div>
                 </div>
             </div>
@@ -464,75 +532,43 @@
 
         <section id="services" class="section">
             <div class="container">
-                <h2 class="section-title">Our Services</h2>
+                <h2 class="section-title">Our Expertise</h2>
                 <div class="services-grid">
                     <div class="service-item">
                         <div class="service-icon">&#128736;</div>
-                        <h3 class="service-title">Web Design</h3>
-                        <p>Creating visually appealing and user-friendly websites that reflect your brand identity and engage your target audience.</p>
+                        <h3 class="service-title">Web Design & Development</h3>
+                        <p>Crafting visually stunning and functionally powerful websites that seamlessly blend form and function to elevate your brand's online presence.</p>
                     </div>
                     <div class="service-item">
                         <div class="service-icon">&#128241;</div>
                         <h3 class="service-title">UX/UI Design</h3>
-                        <p>Crafting intuitive user experiences and interfaces that enhance user satisfaction and drive conversions.</p>
+                        <p>Creating intuitive and engaging user experiences that delight your audience and drive conversions through thoughtful interface design.</p>
                     </div>
                     <div class="service-item">
                         <div class="service-icon">&#127912;</div>
-                        <h3 class="service-title">Graphic Design</h3>
-                        <p>Developing cohesive visual identities and stunning graphics that elevate your brand across all digital platforms.</p>
+                        <h3 class="service-title">Brand Identity</h3>
+                        <p>Developing cohesive visual identities and stunning graphics that tell your brand's story and resonate with your target audience across all digital touchpoints.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="benefits" class="section">
-            <div class="container">
-                <h2 class="section-title">Why Choose Us</h2>
-                <ul class="benefits-list">
-                    <li class="benefit-item">
-                        <span class="benefit-icon">&#10004;</span>
-                        Expert team of designers and developers
-                    </li>
-                    <li class="benefit-item">
-                        <span class="benefit-icon">&#10004;</span>
-                        Tailored solutions for your unique needs
-                    </li>
-                    <li class="benefit-item">
-                        <span class="benefit-icon">&#10004;</span>
-                        Commitment to innovation and creativity
-                    </li>
-                    <li class="benefit-item">
-                        <span class="benefit-icon">&#10004;</span>
-                        Proven track record of successful projects
-                    </li>
-                    <li class="benefit-item">
-                        <span class="benefit-icon">&#10004;</span>
-                        Ongoing support and maintenance
-                    </li>
-                    <li class="benefit-item">
-                        <span class="benefit-icon">&#10004;</span>
-                        Transparent communication throughout the process
-                    </li>
-                </ul>
-            </div>
-        </section>
-
         <section id="testimonials" class="testimonials">
             <div class="container">
-                <h2 class="section-title">Client Success Stories</h2>
+                <h2 class="section-title">Success Stories</h2>
                 <div class="testimonial-grid">
                     <div class="testimonial-item">
-                        <p class="testimonial-content">"InnoWeb Studio transformed our online presence. Their innovative design and seamless functionality have significantly boosted our customer engagement."</p>
+                        <p class="testimonial-content">"InnoWeb Studio revolutionized our online presence. Their innovative design and seamless functionality have significantly amplified our customer engagement and conversion rates."</p>
                         <p class="testimonial-author">Sarah Johnson</p>
                         <p class="testimonial-company">CEO, TechNova</p>
                     </div>
                     <div class="testimonial-item">
-                        <p class="testimonial-content">"The team at InnoWeb Studio delivered beyond our expectations. Our new website has become a powerful tool for our business growth."</p>
+                        <p class="testimonial-content">"The team at InnoWeb Studio exceeded all our expectations. Our new website has become a powerful catalyst for our business growth, setting us apart in a competitive market."</p>
                         <p class="testimonial-author">Michael Chen</p>
                         <p class="testimonial-company">Founder, GreenEco Solutions</p>
                     </div>
                     <div class="testimonial-item">
-                        <p class="testimonial-content">"Working with InnoWeb Studio was a game-changer for our e-commerce platform. Their expertise in UX/UI design is unparalleled."</p>
+                        <p class="testimonial-content">"Collaborating with InnoWeb Studio was a game-changer for our e-commerce platform. Their expertise in UX/UI design has dramatically improved our user experience and sales."</p>
                         <p class="testimonial-author">Emma Rodriguez</p>
                         <p class="testimonial-company">Owner, Artisan Delights</p>
                     </div>
@@ -542,7 +578,7 @@
 
         <section id="contact" class="section">
             <div class="container">
-                <h2 class="section-title">Get In Touch</h2>
+                <h2 class="section-title">Let's Create Together</h2>
                 <form class="contact-form">
                     <div class="form-group">
                         <label for="name">Name</label>
@@ -553,35 +589,11 @@
                         <input type="email" id="email" name="email" required>
                     </div>
                     <div class="form-group">
-                        <label for="message">Message</label>
+                        <label for="message">Your Vision</label>
                         <textarea id="message" name="message" required></textarea>
                     </div>
-                    <button type="submit" class="cta-button">Send Message</button>
+                    <button type="submit" class="cta-button">Initiate Your Project</button>
                 </form>
-            </div>
-        </section>
-
-        <section id="faq" class="section">
-            <div class="container">
-                <h2 class="section-title">Frequently Asked Questions</h2>
-                <div class="faq-grid">
-                    <div class="faq-item">
-                        <h3 class="faq-question">What is your design process?</h3>
-                        <p class="faq-answer">Our design process involves understanding your needs, researching your industry, creating wireframes, designing mockups, and iterating based on your feedback until we achieve the perfect design.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3 class="faq-question">How long does a typical project take?</h3>
-                        <p class="faq-answer">Project timelines vary depending on the scope and complexity. A simple website might take 4-6 weeks, while a more complex project could take 2-3 months. We'll provide a detailed timeline during our initial consultation.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3 class="faq-question">Do you offer ongoing support?</h3>
-                        <p class="faq-answer">Yes, we offer various support and maintenance packages to ensure your website remains up-to-date, secure, and performs optimally long after the initial launch.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3 class="faq-question">What technologies do you use?</h3>
-                        <p class="faq-answer">We use a variety of modern technologies including HTML5, CSS3, JavaScript, React, Node.js, and WordPress, among others. The specific tech stack is chosen based on your project's unique requirements.</p>
-                    </div>
-                </div>
             </div>
         </section>
     </main>
@@ -594,18 +606,17 @@
                 <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
                 <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
             </div>
-            <p>&copy; 2023 InnoWeb Studio. All rights reserved.</p>
+            <p>&copy; 2023 InnoWeb Studio. Crafting Digital Excellence.</p>
         </div>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
     <script>
-        // GSAP Animations
         gsap.registerPlugin(ScrollTrigger);
 
-        gsap.utils.toArray('.feature-item, .service-item, .testimonial-item, .faq-item').forEach((element) => {
+        gsap.utils.toArray('.feature-item, .service-item, .testimonial-item').forEach((element) => {
             gsap.from(element, {
-                y: 30,
+                y: 50,
                 opacity: 0,
                 duration: 1,
                 ease: "power3.out",
@@ -618,7 +629,6 @@
             });
         });
 
-        // Smooth scroll for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -628,13 +638,20 @@
             });
         });
 
-        // Form submission
         const contactForm = document.querySelector('.contact-form');
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            // Add your form submission logic here
             alert('Thank you for your message. We will get back to you soon!');
             contactForm.reset();
+        });
+
+        const heroContent = document.querySelector('.hero-content');
+        gsap.from(heroContent.children, {
+            opacity: 0,
+            y: 50,
+            duration: 1,
+            stagger: 0.2,
+            ease: "power3.out"
         });
     </script>
 </body>
